@@ -3,7 +3,7 @@ import type { Collection } from '@tinacms/schema-tools'
 export const whatIsCounterpartyCollection: Collection = {
   name: "whatiscounterparty",
   label: "What Is Counterparty",
-  path: "src/content/home",
+  path: "src/content/home/whatiscounterparty",
   format: "md",
   fields: [
     {

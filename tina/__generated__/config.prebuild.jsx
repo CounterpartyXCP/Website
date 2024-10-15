@@ -48,7 +48,7 @@ var headerCollection = {
 var whatIsCounterpartyCollection = {
   name: "whatiscounterparty",
   label: "What Is Counterparty",
-  path: "src/content/home",
+  path: "src/content/home/whatiscounterparty",
   format: "md",
   fields: [
     {
