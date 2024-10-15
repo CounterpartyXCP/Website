@@ -1,0 +1,163 @@
+---
+import { client } from "../../../tina/__generated__/client";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import CommonStyles from "../CommonStyles.astro";
+
+const explorersPageResponse = await client.queries.explorersPage({ relativePath: "explorers.md" });
+const explorersPageContent = explorersPageResponse.data.explorersPage;
+
+const explorerList = (await Promise.all(
+  explorersPageContent.explorerList?.map(async (explorerFileName: string) => {
+    if (!explorerFileName) return null;
+    try {
+      const explorerResponse = await client.queries.explorer({ relativePath: explorerFileName });
+      return explorerResponse.data.explorer;
+    } catch (error) {
+      console.error(`Error loading explorer ${explorerFileName}:`, error);
+      return null;
+    }
+  }) ?? []
+)).filter((explorer): explorer is NonNullable<typeof explorer> => explorer !== null);
+
+const generalPurposeExplorers = explorerList.filter(explorer => explorer.type === "general");
+const themedExplorers = explorerList.filter(explorer => explorer.type === "themed");
+---
+
+<section id="explorers" class="explorers py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">{explorersPageContent.title}</h2>
+    
+    <h3 class="text-center mb-3">General-Purpose</h3>
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <div class="text-center">
+          <TinaMarkdown content={explorersPageContent.generalPurposeIntro} />
+        </div>
+      </div>
+    </div>
+    <div class="row g-4 mb-5">
+      {generalPurposeExplorers.map((explorer) => (
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="explorer-icon me-3" />
+                <h4 class="card-title mb-0">{explorer?.title}</h4>
+              </div>
+              <p class="card-text">{explorer?.description}</p>
+            </div>
+            <div class="card-footer bg-white border-top-0 text-center">
+              <a href={explorer?.link} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Check it out</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="text-center mb-3">Themed</h3>
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8">
+        <div class="text-center">
+          <TinaMarkdown content={explorersPageContent.themedIntro} />
+        </div>
+      </div>
+    </div>
+    <div class="row g-4">
+      {themedExplorers.map((explorer) => (
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="d-flex align-items-center mb-3">
+                <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="explorer-icon me-3" />
+                <h4 class="card-title mb-0">{explorer?.title}</h4>
+              </div>
+              <p class="card-text">{explorer?.description}</p>
+            </div>
+            <div class="card-footer bg-white border-top-0 text-center">
+              <a href={explorer?.link} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Check it out</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CommonStyles />
+
+<style>
+  .explorers {
+    position: relative;
+    background-color: #ffffff;
+  }
+
+  .explorers::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/pattern.png');
+    background-repeat: repeat;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    padding: 1.5rem;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .explorer-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #6c757d;
+  }
+
+  .card-footer {
+    padding-top: 1rem;
+  }
+
+  .btn-primary {
+    background-color: #EC1550;
+    border-color: #EC1550;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .btn-primary:hover {
+    background-color: #d01348;
+    border-color: #d01348;
+  }
+
+  h3 {
+    color: #293C70;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: -1px;
+  }
+</style>

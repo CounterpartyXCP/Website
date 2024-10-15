@@ -1,0 +1,73 @@
+---
+import { client } from "../../../tina/__generated__/client";
+
+const headerResponse = await client.queries.header({ relativePath: "header.md" });
+const header = headerResponse.data.header;
+---
+
+<header class="py-5">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-lg-5">
+        <h1 class="display-4 mb-4">{header.title}</h1>
+        <div class="d-flex flex-wrap gap-2">
+          {header.ctaButtons?.map((button) => (
+            <a href={button?.link} class="btn btn-custom">{button?.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style>
+  :root {
+    --ec-1550: #EC1550;
+  }
+
+  header {
+    color: #293C70;
+    margin-top: 66px;
+    background-image: url('/images/header_bg.png');
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 550px;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: -2.4px;
+    line-height: 1.2;
+    color: #293C70;
+  }
+
+  .btn-custom {
+    color: #FFF;
+    font-family: "Readex Pro", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.72px;
+    padding: 14px 22px;
+    background-color: var(--ec-1550);
+    border-color: var(--ec-1550);
+    text-edge: cap;
+    font-feature-settings: 'ss02' on;
+  }
+
+  .btn-custom:hover {
+    background-color: #d01348;
+    border-color: #d01348;
+    color: #FFF;
+  }
+
+  /* For browsers that support it */
+  @supports (font-variant-alternates: styleset(ss02)) {
+    .btn-custom {
+      font-variant-alternates: styleset(ss02);
+    }
+  }
+</style>

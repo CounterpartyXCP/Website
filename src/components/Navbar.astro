@@ -1,0 +1,58 @@
+---
+const navItems = [
+  { label: "Get Started", href: "/get-started" },
+  { label: "Releases", href: "/releases" },
+  { label: "Docs", href: "/docs" },
+  { label: "News", href: "/news" },
+  { label: "Projects", href: "/projects" },
+];
+---
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/images/xcp.svg" alt="Counterparty Logo" height="40" class="me-2">
+      <span>Counterparty</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        {navItems.map((item) => (
+          <li class="nav-item">
+            <a class="nav-link" href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-brand {
+    font-weight: 500;
+    font-size: 1.4rem;
+    color: #333;
+  }
+
+  .nav-link {
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #e91e63;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      padding-top: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,167 @@
+---
+import { client } from "../../../tina/__generated__/client";
+import Layout from '../../layouts/Layout.astro';
+import { Tweet } from 'astro-embed';
+
+export async function getStaticPaths() {
+  const newsResponse = await client.queries.newsConnection();
+  const paths = newsResponse.data.newsConnection.edges?.map(edge => {
+    const slug = edge?.node?.slug || edge?.node?._sys.filename;
+    console.log(`Generated path for slug: ${slug}`);
+    return {
+      params: { slug },
+      props: { news: edge?.node },
+    };
+  }) ?? [];
+
+  console.log(`Total paths generated: ${paths.length}`);
+  return paths;
+}
+
+const { news } = Astro.props;
+
+// Dynamically import the MDX or MD content
+let Content;
+try {
+  const mdxModule = await import(`../../content/news/${news?.slug || ''}.mdx`);
+  Content = mdxModule.Content;
+} catch (mdxError) {
+  try {
+    const mdModule = await import(`../../content/news/${news?.slug || ''}.md`);
+    Content = mdModule.Content;
+  } catch (mdError) {
+    console.error('Failed to load content:', mdxError, mdError);
+    Content = null;
+  }
+}
+---
+
+<Layout title={`${news?.title || 'News'} - Counterparty News`}>
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+        <li><i class="fas fa-chevron-right"></i><a href="/news">News</a></li>
+        <li><i class="fas fa-chevron-right" aria-hidden="true"></i><span aria-current="page">{news?.title}</span></li>
+      </ol>
+    </nav>
+    <article class="news-article">
+      <h1>{news?.title}</h1>
+      <p class="date">{new Date(news?.date ?? Date.now()).toLocaleDateString()}</p>
+      {news?.image && <img src={news.image} alt={news.title} class="featured-image" />}
+      <div class="tags">
+        {news?.tags?.map(tag => <span class="tag">{tag}</span>)}
+      </div>
+      <div class="content">
+        {Content ? <Content components={{ Tweet }} /> : <p>Content not found.</p>}
+      </div>
+    </article>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin-top: 60px; /* Add this line to create space below the navbar */
+  }
+  .news-article {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-top: 1rem; /* Add some space between breadcrumb and article */
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .date {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  .tags {
+    margin-bottom: 1.5rem;
+  }
+  .tag {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .featured-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+  .content {
+    line-height: 1.8;
+    font-size: 1.1rem;
+  }
+  .content :global(h2) {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .content :global(p) {
+    margin-bottom: 1rem;
+  }
+  .content :global(a) {
+    color: #0077cc;
+    text-decoration: none;
+  }
+  .content :global(a:hover) {
+    text-decoration: underline;
+  }
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    padding-top: 1rem; /* Add some padding to the top of the breadcrumb */
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb a {
+    color: #0077cc;
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .breadcrumb i {
+    font-size: 0.8rem;
+    margin: 0 0.5rem;
+    color: #666;
+  }
+
+  .breadcrumb span {
+    color: #666;
+  }
+
+  /* Add styles for embedded tweets */
+  :global(.twitter-tweet) {
+    margin: 1rem auto;
+    max-width: 550px;
+  }
+</style>
+
+<!-- Add Twitter's widget.js script -->
+<script async src="https://platform.twitter.com/widgets.js"></script>

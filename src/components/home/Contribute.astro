@@ -1,0 +1,80 @@
+---
+import { client } from "../../../tina/__generated__/client";
+import CommonStyles from "../CommonStyles.astro";
+
+const contributeResponse = await client.queries.contribute({ relativePath: "contribute.md" });
+const contributeContent = contributeResponse.data.contribute;
+---
+
+<section class="contribute py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">{contributeContent?.title}</h2>
+    <p class="text-center mb-5">{contributeContent?.subtitle}</p>
+    
+    <div class="row justify-content-center">
+      <div class="col-md-5 text-center mb-4 mb-md-0">
+        <h3>{contributeContent?.developmentTitle}</h3>
+        <div class="d-flex justify-content-center mt-4">
+          {contributeContent?.developmentLinks?.map((link: any) => (
+            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="mx-3">
+              <i class={`${link?.icon} fa-3x`}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="col-md-1 d-none d-md-block">
+        <div class="vertical-line"></div>
+      </div>
+      <div class="col-md-5 text-center">
+        <h3>{contributeContent?.communityTitle}</h3>
+        <div class="d-flex justify-content-center mt-4">
+          {contributeContent?.communityLinks?.map((link: any) => (
+            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="mx-3">
+              <i class={`${link?.icon} fa-3x`}></i>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CommonStyles />
+
+<style>
+  .contribute {
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  h2 {
+    color: #293C70;
+    font-weight: 300;
+    font-size: 34px;
+    letter-spacing: -1px;
+  }
+
+  h3 {
+    color: #293C70;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: #EC1550;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #d01348;
+  }
+
+  .vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: #dee2e6;
+    margin: 0 auto;
+  }
+</style>

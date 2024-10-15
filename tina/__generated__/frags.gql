@@ -1,0 +1,117 @@
+fragment ContributeParts on Contribute {
+  __typename
+  title
+  subtitle
+  developmentTitle
+  communityTitle
+  developmentLinks {
+    __typename
+    title
+    url
+    icon
+  }
+  communityLinks {
+    __typename
+    title
+    url
+    icon
+  }
+}
+
+fragment HeaderParts on Header {
+  __typename
+  title
+  description
+  ctaButtons {
+    __typename
+    label
+    link
+  }
+}
+
+fragment WhatiscounterpartyParts on Whatiscounterparty {
+  __typename
+  title
+  description
+  keyFeatures {
+    __typename
+    title
+    description
+    icon
+  }
+}
+
+fragment WalletParts on Wallet {
+  __typename
+  title
+  description
+  link
+  logo
+  features {
+    __typename
+    dispensers
+    assetCreation
+    dex
+  }
+  platforms {
+    __typename
+    web
+    mobile
+    desktop
+  }
+  isV104Compatible
+  twitter
+  telegram
+}
+
+fragment WalletsPageParts on WalletsPage {
+  __typename
+  title
+  subtitle
+  info
+  walletList
+}
+
+fragment ExplorerParts on Explorer {
+  __typename
+  title
+  description
+  link
+  logo
+  type
+}
+
+fragment ExplorersPageParts on ExplorersPage {
+  __typename
+  title
+  generalPurposeIntro
+  themedIntro
+  explorerList
+}
+
+fragment MarketplacesParts on Marketplaces {
+  __typename
+  title
+  introduction
+  marketplaceList {
+    __typename
+    name
+    description
+    link
+    logo
+  }
+}
+
+fragment NewsParts on News {
+  __typename
+  title
+  date
+  slug
+  status
+  author
+  excerpt
+  categories
+  tags
+  image
+  body
+}

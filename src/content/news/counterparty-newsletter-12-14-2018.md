@@ -1,0 +1,59 @@
+---
+title: "Counterparty Newsletter 12/14/2018"
+excerpt: >-
+  &nbsp; It’s been a quiet month in the Counterparty ecosystem but nevertheless, there are some interesting updates leading into the new year. Check them out below: &nbsp; Ecosystem Updates: &nbsp; IndieSquare is working towards a new project with the intention of allowing instant and cheap counterparty tokens sends, that will be optimized for gaming use
+categories: ["News"]
+tags: []
+author: Rebekah Moss
+date: 2018-12-14T21:37:38+00:00
+status: published
+slug: counterparty-newsletter-12-14-2018
+---
+
+ **It’s been a quiet month in the Counterparty ecosystem but nevertheless, there are some interesting updates leading into the new year. Check them out below:**
+
+### **Ecosystem Updates:**
+
+ **IndieSquare** is working towards a new project with the intention of allowing instant and cheap counterparty tokens sends, that will be optimized for gaming use cases. With the new year, more information will be released as the project progresses. Download IndieSquare Wallet via your nearest app store for iOS [here](https://itunes.apple.com/app/kauntao-cai-bu/id977972108) and for Android [here](https://play.google.com/store/apps/details?id=inc.lireneosoft.counterparty). 
+ 
+ **Mandel Duck** developer Christian Moss, is set to release a beta version of his original SaruTobi game in the near future. This beta release will include lightning payments and tipping. Check out Mandel Duck’s latest projects [here](http://mandelduck.com/) as well as a sneak peek at the latest project below: <Tweet id="https://twitter.com/MandelDuck/status/1073425173284478978" /> 
+ 
+ **Blockchainizator** is celebrating being back in [Digirare’s](https://digirare.com/rankings) top 10 ranking. Digirare features cryptoart collections on the blockchain. Blockchainizator’s AtOMo collection is currently ranked at number 2 with Spells of Genesis taking the top spot, and Mafia Wars and Rare Pepe, taking the spots below concurrently. <Tweet id="https://twitter.com/Blockchainizatr/status/1061738663023964160" /> 
+ 
+ **Mafia Wars** continues to post many new cards - available to play in their game of idle accumulation - via their social media networks, in the past month. https://twitter.com/mafiawars\_io/status/1073243144521703424 To find out more, including how to buy the cards that often feature other projects within the counterparty community, click [here.](https://mafiawars.io/shop) The Mafia Wars team was also featured in an article on [Bitcoin News](https://news.bitcoin.com/organized-crime-goes-digital-with-the-blockchain-based-mafia-wars-game/)earlier this month. The piece gives an in-depth description of the game’s premise as well as, details as to the Mafia families at play within the game. Highlighting reader’s interests is the point that, “this game goes on for a very long time if you want to become the boss of all bosses because the holder of the most mafiacash coins will not be declared the winner until July 1, 2023”. The article also mentions the game’s cross-platform interactivity with Age of Rust, Spells of Genesis and Rare Pepe - via their blockchain card series. The Mafia Wars game also recently completed their 6th MAFIACASH distribution. 
+ 
+ **BitCrystals** offers its community a giveaway via its new dual-chain app [‘Casa Tookan](https://medium.com/casatookan/casa-tookan-the-bird-that-chirps-on-the-blockchains-a3586574a037)’ (now available on both android and ios) this holiday season. The Snowfall giveaway, operating across the Bitcrystals project ecosystem, will distribute 5,000,000 BitCrystals to users, to celebrate the launch of a new ERC-721 token. To learn more click [here](https://bitcrystals.com/bitcrystals-snowfall-2018/). The launch also expands to a very special level within Spells of Genesis. <Tweet id="https://twitter.com/SpellsofGenesis/status/1072087839318401024" /> In other news, resident Blockchain artist [Joey Chips](https://twitter.com/joeychips) has recently produced at least three pieces of cryptoart for the CrystalCraft collection in Book of Orbs. Check them out below: <Tweet id="https://twitter.com/BitCrystals/status/1072273140737327104" /> <Tweet id="https://twitter.com/BitCrystals/status/1071202489301721090" /> Carrying on from last month, the Bitcrystals team has also provided more [details](https://medium.com/moonify/collecting-bitcrystals-with-moonify-app-4212af271c62) as to how to collect BitCrystals with the Moonify app. 
+ 
+ **FoldingCoin** had a very busy November. Having attended Blockchain conferences throughout Washington DC, the FoldingCoin team met with several people within the Education and Healthcare Industries. Furthermore, their presentation resulted in new connections for the team and a positive reception to the presentation itself. These connections focused on the utilization of blockchain technology for both existing challenges and new ones. The team has also garnered more traction in their efforts to acquire grants, providing a very promising outlook for the future of FoldingCoin. On the development side, the team reports that the new release candidate for the stats downloader was created, including bug fixes, a security update for their API, and additional tools to help with upgrading and managing the stats database. Finally, in exciting news, two new stores in Greece are accepting the FLDC token as payment methods. 
+ 
+ **Augmentors** continues to progress with its development - as ever - with the continuous release of new creatures, the release of a player leaderboard and player [leagues](<Tweet id="https://twitter.com/AugmentorsGame/status/1072491386006585345" />), and community updates. Check out the latest community updates, as well as check out the latest sneak peeks below: <Tweet id="https://twitter.com/AugmentorsGame/status/1073170897924751360" /> <Tweet id="https://twitter.com/AugmentorsGame/status/1073216359000145920" /> 
+ 
+ **Bitcorn Crops** has had an exciting month; celebrating the news that their cards can now be traded via Book of Orbs. Book of Orbs, a popular counterparty wallet for blockchain gaming assets already features environments featured within a few of the Bitcorn Crops collections; such as Rare Pepe and BitCrystals. To read more click [here.](https://medium.com/@BitcornCrops/bitcorn-cards-added-to-book-of-orbs-d96374403d27) Also, members of the Bitcorns community can check out the past months’ Bitcorn Crops “Crop Talk” podcasts [here](https://soundcloud.com/user-224956270). 
+ 
+ **Rarepepe.party** has some in-depth updates for the community this month. Firstly, a redesign of the game mechanic and initial implementation is well underway. Creator John Villar assures the community that “what *is* being developed involves the mechanics of several games into one "casual" game that's sure to grab the attention of non-crypto players: These namely include • Redesign of the core mechanic as an "overworld" driven faction battle. • The inclusion of several mechanics derived from “battle royale” into a team play design. • PvP Battles that can be grouped or individual, depending on the dynamic being used by players. • Rules for card usage and effects are going to be developed an open source, enabling anyone to fork and propose new rulesets, even being able to play with these forked rulesets directly from [GitHub](https://github.com/RarePepe-Party/rpp-cards-ruleset).[](https://github.com/RarePepe-Party/rpp-cards-ruleset)• The inclusion of several other projects besides Rarepepe depends on the inclusion of the related rulesets on these code repositories. I.e. Pepevote, mafia wars or bitcorns could develop rulesets for their cards to be included in the game. A framework for this kind of inclusion will be published along with the public API for the game. 
+ 
+ **Infi.space:** A new project within the community has begun to publish some of their cards on their [twitter handle](https://twitter.com/InfiSpace). The project, which seems to be proposed as an accumulation project of 3D tokens, shows two initial spaceships that will be available in their first collection. The full mechanic of this collection is yet to be revealed. <Tweet id="https://twitter.com/InfiSpace/status/1065067457973559298" />
+
+### **Counterparty in the News:**
+
+In a quiet month for Counterparty news, we highlight this piece by Joe Looney, founder of Rare Pepe Wallet; as he discusses the cost of Cryptogoods. In mentioning Counterparty in his discussions alongside Smart Contracts, other blockchains, and on-chain vs off-chain - he discusses the real value and ideally, the longevity of “rare art” as it has become known to some. Check it out [here](https://medium.com/@joelooney/the-real-cost-of-cryptogoods-dd156f5df056). 
+
+### **Development News:**
+
+Over the last month, extensive bug testing has gone into the latest update, squashing several bugs from the [CIP 19](https://github.com/CounterpartyXCP/cips/blob/master/cip-0019.md) implementation, as well as the merging of several other PRs (including segwit). Core is almost done, drawing nearer to its release to master. Thank you for your continued support and patience as Counterparty developers tackle each CIP in due course. Here is a reminder of current and future CIPs: 
+
+**[CIP 6](https://github.com/CounterpartyXCP/cips/blob/master/cip-0006.md) - P2SH data encoding:** P2SH data encoding will allow Counterparty to utilize more space for transactions. CIP 6 will be beneficial to large transactions and is a prerequisite in supporting some of the more advanced send types, such as multi-peer-multi-asset (MPMA) and Multiparty Counterparty Aggregate Transactions (MCAT).  
+
+**[CIP 10](https://github.com/chiguireitor/cips/blob/cip10/cip-0010.md) - Multi-Peer Multi-Asset Sends (MPMA):** Multi-Peer Multi-Assets sends will allow many assets to be sent to many peers in a single transaction, simplifying batch transactions, and reducing transaction fees even further. 
+
+**[CIP 15](https://github.com/deweller/cips/blob/cip-15-segwit/cip-0015.md)- Segwit Support:** Enabling Segwit support within Counterparty will enable users to spend less on transaction fees and enables potential future enhancements. Updating Counterwallet will allow users to choose if they want to send assets to a segwit enabled address or a traditional address. 
+
+CIPs planned for future release: 
+
+**CIP 13 - Multiparty Counterparty Aggregate Transactions (MCAT):** MCAT will allow Counterparty users to group their transactions with those of other Counterparty users, to reduce their send costs considerably. Most users will be able to utilize this feature to send transactions for less than the cost of a single bitcoin transaction. CIP 13 will also allow Counterparty users to utilize MCAT nodes, to send assets across the Counterparty Network, and pay for the transaction fees in an asset other than BTC. 
+
+Counterparty is an open-source, community-funded project which progresses solely through the generous time and monetary donations of others. You can stay up to date with current and future CIPs, as well as links to relevant GitHub pages via the Counterparty [donate](http://counterparty.local/donate/) page. Please[share](https://www.facebook.com/CounterpartyXCP/) or[RT](https://twitter.com/CounterpartyXCP) Counterparty CIPs on social media so we can help fulfill them faster! We have also recently opened up a press channel for any media inquiries and would ask any media outlets to contact <press@Counterparty.io>. 
+
+Please join the [@Counterparty\_XCP](https://t.me/Counterparty_XCP) group on Telegram for breaking news and real-time Counterparty conversation! 
+
+***Disclaimer: This newsletter is sent as an informational piece, and no part of it should be taken as financial advice.***
