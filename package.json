@@ -1,9 +1,9 @@
 {
   "name": "counterparty",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
-    "dev": "tinacms dev -c \"astro dev\"",
+    "dev": "concurrently \"tinacms dev\" \"astro dev\"",
     "build": "tinacms build && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -27,6 +27,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@types/codemirror": "^5.60.15"
+    "@types/codemirror": "^5.60.15",
+    "concurrently": "^8.0.1"
   }
 }
