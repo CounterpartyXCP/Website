@@ -20,11 +20,11 @@ const communityLinks = [
 ];
 ---
 
-<footer class="bg-gray-100 py-12 font-readex-pro">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<footer class="bg-gray-100 py-12">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <h5 class="text-lg font-semibold mb-4">About Counterparty</h5>
+        <h5 class="text-lg font-light text-blue-900 mb-4">About Counterparty</h5>
         <ul class="space-y-2">
           {aboutLinks.map((link) => (
             <li><a href={link.href} class="text-gray-600 hover:text-counterparty-red transition duration-300">{link.label}</a></li>
@@ -32,7 +32,7 @@ const communityLinks = [
         </ul>
       </div>
       <div>
-        <h5 class="text-lg font-semibold mb-4">Resources</h5>
+        <h5 class="text-lg font-light text-blue-900 mb-4">Resources</h5>
         <ul class="space-y-2">
           {resourceLinks.map((link) => (
             <li><a href={link.href} class="text-gray-600 hover:text-counterparty-red transition duration-300">{link.label}</a></li>
@@ -40,7 +40,7 @@ const communityLinks = [
         </ul>
       </div>
       <div>
-        <h5 class="text-lg font-semibold mb-4">Community</h5>
+        <h5 class="text-lg font-light text-blue-900 mb-4">Community</h5>
         <ul class="space-y-2">
           {communityLinks.map((link) => (
             <li><a href={link.href} class="text-gray-600 hover:text-counterparty-red transition duration-300">{link.label}</a></li>
@@ -48,7 +48,7 @@ const communityLinks = [
         </ul>
       </div>
       <div>
-        <h5 class="text-lg font-semibold mb-4">Stay Updated</h5>
+        <h5 class="text-lg font-light text-blue-900 mb-4">Stay Updated</h5>
         <p class="text-gray-600 mb-4">Subscribe to our newsletter for the latest updates and news.</p>
         <a href="/subscribe" class="bg-counterparty-red hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300">Subscribe</a>
       </div>

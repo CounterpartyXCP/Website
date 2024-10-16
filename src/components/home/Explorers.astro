@@ -1,13 +1,12 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import CommonStyles from "../CommonStyles.astro";
 
 const explorersPageResponse = await client.queries.explorersPage({ relativePath: "explorers.md" });
 const explorersPageContent = explorersPageResponse.data.explorersPage;
 
 const explorerList = (await Promise.all(
-  explorersPageContent.explorerList?.map(async (explorerFileName: string) => {
+  explorersPageContent.explorerList?.map(async (explorerFileName) => {
     if (!explorerFileName) return null;
     try {
       const explorerResponse = await client.queries.explorer({ relativePath: explorerFileName });
@@ -23,59 +22,56 @@ const generalPurposeExplorers = explorerList.filter(explorer => explorer.type ==
 const themedExplorers = explorerList.filter(explorer => explorer.type === "themed");
 ---
 
-<section id="explorers" class="explorers py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">{explorersPageContent.title}</h2>
+<section id="explorers" class="bg-white py-16 relative">
+  <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+  <div class="max-w-screen-2xl max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-8">{explorersPageContent.title}</h2>
     
-    <h3 class="text-center mb-3">General-Purpose</h3>
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-8">
-        <div class="text-center">
-          <TinaMarkdown content={explorersPageContent.generalPurposeIntro} />
-        </div>
+    <h3 class="text-2xl font-light text-blue-900 text-center mb-6">General-Purpose</h3>
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="text-center text-blue-900">
+        <TinaMarkdown content={explorersPageContent.generalPurposeIntro} />
       </div>
     </div>
-    <div class="row g-4 mb-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {generalPurposeExplorers.map((explorer) => (
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="explorer-icon me-3" />
-                <h4 class="card-title mb-0">{explorer?.title}</h4>
-              </div>
-              <p class="card-text">{explorer?.description}</p>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+          <div class="p-6 flex-grow">
+            <div class="flex items-center mb-4">
+              <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="w-10 h-10 object-contain mr-3" />
+              <h4 class="text-xl font-normal text-blue-900">{explorer?.title}</h4>
             </div>
-            <div class="card-footer bg-white border-top-0 text-center">
-              <a href={explorer?.link} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Check it out</a>
-            </div>
+            <p class="text-sm text-blue-900 mb-4">{explorer?.description}</p>
+          </div>
+          <div class="px-6 pb-6">
+            <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+              Check it out
+            </a>
           </div>
         </div>
       ))}
     </div>
 
-    <h3 class="text-center mb-3">Themed</h3>
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-8">
-        <div class="text-center">
-          <TinaMarkdown content={explorersPageContent.themedIntro} />
-        </div>
+    <h3 class="text-2xl font-light text-blue-900 text-center mb-6">Themed</h3>
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="text-center text-blue-900">
+        <TinaMarkdown content={explorersPageContent.themedIntro} />
       </div>
     </div>
-    <div class="row g-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {themedExplorers.map((explorer) => (
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="explorer-icon me-3" />
-                <h4 class="card-title mb-0">{explorer?.title}</h4>
-              </div>
-              <p class="card-text">{explorer?.description}</p>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+          <div class="p-6 flex-grow">
+            <div class="flex items-center mb-4">
+              <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="w-10 h-10 object-contain mr-3" />
+              <h4 class="text-xl font-normal text-blue-900">{explorer?.title}</h4>
             </div>
-            <div class="card-footer bg-white border-top-0 text-center">
-              <a href={explorer?.link} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Check it out</a>
-            </div>
+            <p class="text-sm text-blue-900 mb-4">{explorer?.description}</p>
+          </div>
+          <div class="px-6 pb-6">
+            <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+              Check it out
+            </a>
           </div>
         </div>
       ))}
@@ -83,15 +79,8 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
   </div>
 </section>
 
-<CommonStyles />
-
 <style>
-  .explorers {
-    position: relative;
-    background-color: #ffffff;
-  }
-
-  .explorers::before {
+  #explorers::before {
     content: '';
     position: absolute;
     top: 0;
@@ -103,61 +92,5 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
     mask-image: linear-gradient(to bottom, black, transparent);
     -webkit-mask-image: linear-gradient(to bottom, black, transparent);
     z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .card {
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    padding: 1.5rem;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  .explorer-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #6c757d;
-  }
-
-  .card-footer {
-    padding-top: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #EC1550;
-    border-color: #EC1550;
-    padding: 0.5rem 1.5rem;
-  }
-
-  .btn-primary:hover {
-    background-color: #d01348;
-    border-color: #d01348;
-  }
-
-  h3 {
-    color: #293C70;
-    font-weight: 300;
-    font-size: 28px;
-    letter-spacing: -1px;
   }
 </style>

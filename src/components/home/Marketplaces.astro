@@ -1,37 +1,35 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import CommonStyles from "../CommonStyles.astro";
 
 const marketplacesResponse = await client.queries.marketplaces({ relativePath: "marketplaces.md" });
 const marketplacesContent = marketplacesResponse.data.marketplaces;
 ---
 
-<section id="marketplaces" class="marketplaces py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">{marketplacesContent.title}</h2>
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-8">
-        <div class="text-center">
-          <TinaMarkdown content={marketplacesContent.introduction} />
-        </div>
+<section id="marketplaces" class="bg-white py-16 relative">
+  <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-8">{marketplacesContent.title}</h2>
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="text-center text-blue-900">
+        <TinaMarkdown content={marketplacesContent.introduction} />
       </div>
     </div>
     
-    <div class="row g-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {marketplacesContent.marketplaceList?.map((marketplace) => (
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src={marketplace?.logo} alt={`${marketplace?.name} logo`} class="marketplace-icon me-3" />
-                <h3 class="card-title mb-0">{marketplace?.name}</h3>
-              </div>
-              <p class="card-text">{marketplace?.description}</p>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+          <div class="p-6 flex-grow">
+            <div class="flex items-center mb-4">
+              <img src={marketplace?.logo} alt={`${marketplace?.name} logo`} class="w-10 h-10 object-contain mr-3" />
+              <h3 class="text-xl font-normal text-blue-900">{marketplace?.name}</h3>
             </div>
-            <div class="card-footer text-center">
-              <a href={marketplace?.link} class="btn btn-primary" target="_blank" rel="noopener noreferrer">Visit {marketplace?.name}</a>
-            </div>
+            <p class="text-sm text-blue-900 mb-4">{marketplace?.description}</p>
+          </div>
+          <div class="px-6 pb-6">
+            <a href={marketplace?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+              Visit {marketplace?.name}
+            </a>
           </div>
         </div>
       ))}
@@ -39,57 +37,18 @@ const marketplacesContent = marketplacesResponse.data.marketplaces;
   </div>
 </section>
 
-<CommonStyles />
-
 <style>
-  .marketplaces {
-    background-color: #ffffff;
-  }
-
-  .card {
-    background-color: #f8f9fa;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    padding: 1.5rem;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  .marketplace-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #293C70;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #6c757d;
-  }
-
-  .card-footer {
-    background-color: transparent;
-    border-top: none;
-    padding-top: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #EC1550;
-    border-color: #EC1550;
-    padding: 0.5rem 1.5rem;
-  }
-
-  .btn-primary:hover {
-    background-color: #d01348;
-    border-color: #d01348;
+  #marketplaces::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/pattern.png');
+    background-repeat: repeat;
+    mask-image: linear-gradient(to bottom, transparent, black);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+    z-index: 0;
   }
 </style>

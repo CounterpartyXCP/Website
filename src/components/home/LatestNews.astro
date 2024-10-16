@@ -1,7 +1,6 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import CommonStyles from "../CommonStyles.astro";
 
 const newsResponse = await client.queries.newsConnection({
   sort: "date",
@@ -10,43 +9,39 @@ const newsResponse = await client.queries.newsConnection({
 const latestNews = newsResponse.data.newsConnection.edges?.map(edge => edge?.node);
 ---
 
-<section class="latest-news py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">Latest News</h2>
-    <div class="row g-4">
+<section id="latest-news" class="bg-white py-16 relative">
+  <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-8">Latest News</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
       {latestNews?.map((news) => (
-        <div class="col-md-4">
-          <div class="card h-100">
-            {news?.image ? (
-              <img src={news.image} alt={news.title} class="card-img-top" />
-            ) : (
-              <img src="/images/default-dev-update.png" alt="Default header" class="card-img-top" />
-            )}
-            <div class="card-body">
-              <h3 class="card-title">{news?.title}</h3>
-              <p class="card-text date">{news?.date ? new Date(news.date).toLocaleDateString() : ''}</p>
-              <p class="card-text summary">{news?.excerpt}</p>
-              <a href={`/news/${news?.slug}`} class="read-more">Read more</a>
-            </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+          {news?.image ? (
+            <img src={news.image} alt={news.title} class="w-full h-48 object-cover" />
+          ) : (
+            <img src="/images/default-dev-update.png" alt="Default header" class="w-full h-48 object-cover" />
+          )}
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-normal text-blue-900 mb-2">{news?.title}</h3>
+            <p class="text-sm text-gray-600 mb-2">{news?.date ? new Date(news.date).toLocaleDateString() : ''}</p>
+            <p class="text-sm text-blue-900 mb-4 flex-grow">{news?.excerpt}</p>
+            <a href={`/news/${news?.slug}`} class="text-counterparty-red hover:text-red-600 font-medium transition duration-300 mt-auto">Read more</a>
           </div>
         </div>
       ))}
     </div>
-    <div class="text-center mt-5">
-      <a href="/news" class="btn btn-primary">View all news</a>
+    
+    <div class="text-center">
+      <a href="/news" class="bg-counterparty-red hover:bg-red-600 text-white font-bold py-2 px-6 rounded transition duration-300">
+        View all news
+      </a>
     </div>
   </div>
 </section>
 
-<CommonStyles />
-
 <style>
-  .latest-news {
-    position: relative;
-    background-color: #ffffff;
-  }
-
-  .latest-news::before {
+  #latest-news::before {
     content: '';
     position: absolute;
     top: 0;
@@ -55,74 +50,6 @@ const latestNews = newsResponse.data.newsConnection.edges?.map(edge => edge?.nod
     bottom: 0;
     background-image: url('/images/pattern.png');
     background-repeat: repeat;
-    mask-image: linear-gradient(to bottom, transparent, black);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black);
     z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .card {
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  .card-img-top {
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #293C70;
-    margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .date {
-    font-style: italic;
-    color: #6c757d;
-    margin-bottom: 0.5rem;
-  }
-
-  .summary {
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  .read-more {
-    color: #EC1550;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-
-  .read-more:hover {
-    color: #d01348;
-  }
-
-  .btn-primary {
-    background-color: #EC1550;
-    border-color: #EC1550;
-    padding: 0.5rem 1.5rem;
-  }
-
-  .btn-primary:hover {
-    background-color: #d01348;
-    border-color: #d01348;
   }
 </style>

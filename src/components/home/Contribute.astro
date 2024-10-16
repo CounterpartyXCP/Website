@@ -1,36 +1,34 @@
 ---
 import { client } from "../../../tina/__generated__/client";
-import CommonStyles from "../CommonStyles.astro";
 
 const contributeResponse = await client.queries.contribute({ relativePath: "contribute.md" });
 const contributeContent = contributeResponse.data.contribute;
 ---
 
-<section class="contribute py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">{contributeContent?.title}</h2>
-    <p class="text-center mb-5">{contributeContent?.subtitle}</p>
+<section id="contribute" class="bg-white py-16 pb-24 relative">
+  <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-4">{contributeContent?.title}</h2>
+    <p class="text-xl font-light text-blue-900 text-center mb-12">{contributeContent?.subtitle}</p>
     
-    <div class="row justify-content-center">
-      <div class="col-md-5 text-center mb-4 mb-md-0">
-        <h3>{contributeContent?.developmentTitle}</h3>
-        <div class="d-flex justify-content-center mt-4">
+    <div class="flex flex-col md:flex-row justify-center items-center md:items-start space-y-8 md:space-y-0 md:space-x-16">
+      <div class="text-center md:w-1/3">
+        <h3 class="text-2xl font-light text-blue-900 mb-6">{contributeContent?.developmentTitle}</h3>
+        <div class="flex justify-center space-x-6">
           {contributeContent?.developmentLinks?.map((link: any) => (
-            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="mx-3">
-              <i class={`${link?.icon} fa-3x`}></i>
+            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="text-counterparty-red hover:text-red-600 transition-colors duration-300">
+              <i class={`${link?.icon} text-4xl`}></i>
             </a>
           ))}
         </div>
       </div>
-      <div class="col-md-1 d-none d-md-block">
-        <div class="vertical-line"></div>
-      </div>
-      <div class="col-md-5 text-center">
-        <h3>{contributeContent?.communityTitle}</h3>
-        <div class="d-flex justify-content-center mt-4">
+      <div class="hidden md:block w-px bg-gray-300 h-32"></div>
+      <div class="text-center md:w-1/3">
+        <h3 class="text-2xl font-light text-blue-900 mb-6">{contributeContent?.communityTitle}</h3>
+        <div class="flex justify-center space-x-6">
           {contributeContent?.communityLinks?.map((link: any) => (
-            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="mx-3">
-              <i class={`${link?.icon} fa-3x`}></i>
+            <a href={link?.url} target="_blank" rel="noopener noreferrer" class="text-counterparty-red hover:text-red-600 transition-colors duration-300">
+              <i class={`${link?.icon} text-4xl`}></i>
             </a>
           ))}
         </div>
@@ -39,42 +37,18 @@ const contributeContent = contributeResponse.data.contribute;
   </div>
 </section>
 
-<CommonStyles />
-
 <style>
-  .contribute {
-    background-color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-
-  h2 {
-    color: #293C70;
-    font-weight: 300;
-    font-size: 34px;
-    letter-spacing: -1px;
-  }
-
-  h3 {
-    color: #293C70;
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  a {
-    color: #EC1550;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  a:hover {
-    color: #d01348;
-  }
-
-  .vertical-line {
-    width: 1px;
-    height: 100%;
-    background-color: #dee2e6;
-    margin: 0 auto;
+  #contribute::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/pattern.png');
+    background-repeat: repeat;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    z-index: 0;
   }
 </style>
