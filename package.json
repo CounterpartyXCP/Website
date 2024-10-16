@@ -4,7 +4,8 @@
   "version": "0.0.2",
   "scripts": {
     "dev": "concurrently \"tinacms dev\" \"astro dev\"",
-    "build": "TINA_PUBLIC_IS_LOCAL=true tinacms build && astro build",
+    "tina": "TINA_PUBLIC_IS_LOCAL=true tinacms dev",
+    "build": "TINA_PUBLIC_IS_LOCAL=true tinacms dev && astro build",
     "prod": "tinacms dev && astro build",
     "preview": "astro preview",
     "astro": "astro",
