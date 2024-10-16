@@ -8,7 +8,7 @@ import { marketplacesCollection } from "../src/content/collections/marketplacesC
 import { contributeCollection } from "../src/content/collections/contributeCollection";
 
 export default defineConfig({
-  authProvider: new LocalAuthProvider(),
+  branch: process.env.HEAD || "master",
   build: {
     outputFolder: "admin",
     publicFolder: "public",
@@ -19,6 +19,7 @@ export default defineConfig({
       publicFolder: "public",
     },
   },
+  authProvider: new LocalAuthProvider(),
   schema: {
     collections: [
       contributeCollection,

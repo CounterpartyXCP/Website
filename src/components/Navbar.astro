@@ -8,51 +8,53 @@ const navItems = [
 ];
 ---
 
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/">
-      <img src="/images/xcp.svg" alt="Counterparty Logo" height="40" class="me-2">
-      <span>Counterparty</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+<nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="flex items-center">
+          <img src="/images/xcp.svg" alt="Counterparty Logo" class="h-10 w-10 mr-2">
+          <span class="text-xl font-medium text-gray-900">Counterparty</span>
+        </a>
+      </div>
+      <div class="hidden md:flex md:items-center md:space-x-4">
         {navItems.map((item) => (
-          <li class="nav-item">
-            <a class="nav-link" href={item.href}>{item.label}</a>
-          </li>
+          <a href={item.href} class="text-blue-900 hover:text-counterparty-red px-2 py-2 rounded-md font-light tracking-tighter transition duration-300">
+            {item.label}
+          </a>
         ))}
-      </ul>
+      </div>
+      <div class="flex md:hidden">
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-counterparty-red" aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      {navItems.map((item) => (
+        <a href={item.href} class="text-blue-900 hover:text-counterparty-red block px-3 py-2 rounded-md text-base font-light tracking-tighter transition duration-300">
+          {item.label}
+        </a>
+      ))}
     </div>
   </div>
 </nav>
 
-<style>
-  .navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+<script>
+  const btn = document.querySelector('button[aria-controls="mobile-menu"]');
+  const menu = document.getElementById('mobile-menu');
 
-  .navbar-brand {
-    font-weight: 500;
-    font-size: 1.4rem;
-    color: #333;
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true' || false;
+      btn.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('hidden');
+    });
   }
-
-  .nav-link {
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-
-  .nav-link:hover {
-    color: #e91e63;
-  }
-
-  @media (max-width: 991px) {
-    .navbar-nav {
-      padding-top: 1rem;
-    }
-  }
-</style>
+</script>

@@ -1,7 +1,6 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import CommonStyles from "../CommonStyles.astro";
 
 const walletsPageResponse = await client.queries.walletsPage({ relativePath: "wallets.md" });
 const walletsPageContent = walletsPageResponse.data.walletsPage;
@@ -37,81 +36,80 @@ const socialIcons = {
 };
 ---
 
-<section id="wallets" class="wallets py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">{walletsPageContent.title}</h2>
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-8">
-        <div class="text-center">
-          <p class="subtitle">{walletsPageContent.subtitle}</p>
-          <TinaMarkdown content={walletsPageContent.info} />
-        </div>
+<section id="wallets" class="bg-white py-16 relative">
+  <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-4">{walletsPageContent.title}</h2>
+    <div class="max-w-3xl mx-auto mb-12">
+      <p class="text-xl font-light text-blue-900 text-center mb-4">{walletsPageContent.subtitle}</p>
+      <div class="text-center text-blue-900">
+        <TinaMarkdown content={walletsPageContent.info} />
       </div>
     </div>
   
-    <div class="row g-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {walletList.map((wallet) => (
-        <div class="col-md-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="wallet-icon me-3" />
-                <h3 class="card-title mb-0">{wallet?.title}</h3>
-                <div class="ms-auto d-flex align-items-center">
-                  {!wallet?.isV104Compatible && (
-                    <i class="fas fa-exclamation-triangle text-warning me-1" style="font-size: 0.8rem;"></i>
-                  )}
-                  <span 
-                    class={`version-indicator ${wallet?.isV104Compatible ? 'compatible' : 'incompatible'}`} 
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="top" 
-                    title={wallet?.isV104Compatible ? "Compatible with latest protocol version" : "Not compatible with latest protocol version"}
-                  >
-                    <span class="indicator-dot"></span>
-                    <span class="version-text">v10.4</span>
-                  </span>
-                </div>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+          <div class="p-6 flex-grow">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center">
+                <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="w-10 h-10 object-contain mr-3" />
+                <h3 class="text-xl font-normal text-blue-900">{wallet?.title}</h3>
               </div>
-              <p class="card-text">{wallet?.description}</p>
-              <div class="features mb-0">
-                <h6 class="mb-2">Advanced Features:</h6>
-                <div class="d-flex flex-wrap">
-                  {Object.entries(wallet?.features || {}).filter(([key]) => key !== '__typename').map(([feature, enabled]) => (
-                    <span class={`feature-badge me-2 mb-2 ${enabled ? 'bg-feature-enabled' : 'bg-feature-disabled'}`} title={feature}>
-                      <i class={`fa-solid ${featureIcons[feature as keyof typeof featureIcons]} me-2`}></i>
-                      {feature}
-                    </span>
-                  ))}
-                </div>
+              <div class="flex items-center">
+                {!wallet?.isV104Compatible && (
+                  <i class="fas fa-exclamation-triangle text-yellow-500 mr-1 text-sm"></i>
+                )}
+                <span 
+                  class={`inline-flex items-center text-xs font-bold ${wallet?.isV104Compatible ? 'text-green-500' : 'text-gray-400'}`}
+                  data-bs-toggle="tooltip"
+                  data-bs-placement="top"
+                  title={wallet?.isV104Compatible ? "Compatible with latest protocol version" : "Not compatible with latest protocol version"}
+                >
+                  <span class={`w-2 h-2 rounded-full mr-1 ${wallet?.isV104Compatible ? 'bg-green-500' : 'bg-gray-400'}`}></span>
+                  v10.4
+                </span>
               </div>
             </div>
-            <div class="card-footer bg-white border-top-0">
-              <a href={wallet?.link} class="btn btn-primary w-100" target="_blank" rel="noopener noreferrer">Get {wallet?.title}</a>
-              <div class="d-flex justify-content-between align-items-center mt-3">
-                <div class="social-links">
-                  {wallet?.twitter && (
-                    <a href={wallet.twitter} target="_blank" rel="noopener noreferrer">
-                      <i class={`fab ${socialIcons.twitter} social-icon`}></i>
-                    </a>
-                  )}
-                  {wallet?.telegram && (
-                    <a href={wallet.telegram} target="_blank" rel="noopener noreferrer">
-                      <i class={`fab ${socialIcons.telegram} social-icon`}></i>
-                    </a>
-                  )}
-                </div>
-                <div class="platforms">
-                  <div class="d-flex justify-content-end">
-                    {Object.entries(wallet?.platforms || {}).filter(([key]) => key !== '__typename').map(([platform, available]) => (
-                      available && (
-                        <span class="platform-icon me-2" title={platform}>
-                          <i class={`fa-solid me-2 ${platformIcons[platform as keyof typeof platformIcons]}`}></i>
-                          {platform}
-                        </span>
-                      )
-                    ))}
-                  </div>
-                </div>
+            <p class="text-sm text-blue-900 mb-4">{wallet?.description}</p>
+            <div class="mb-4">
+              <h6 class="text-sm font-semibold text-blue-900 mb-2">Advanced Features:</h6>
+              <div class="flex flex-wrap gap-2">
+                {Object.entries(wallet?.features || {}).filter(([key]) => key !== '__typename').map(([feature, enabled]) => (
+                  <span class={`text-xs px-2 py-1 rounded-full ${enabled ? 'bg-red-100 text-counterparty-red' : 'bg-gray-100 text-gray-500'}`}>
+                    <i class={`${featureIcons[feature as keyof typeof featureIcons]} mr-1`}></i>
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div class="px-6 pb-6 mt-auto">
+            <a href={wallet?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+              Get {wallet?.title}
+            </a>
+            <div class="flex justify-between items-center mt-4">
+              <div class="flex space-x-2">
+                {wallet?.twitter && (
+                  <a href={wallet.twitter} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-counterparty-red transition-colors duration-300">
+                    <i class={socialIcons.twitter}></i>
+                  </a>
+                )}
+                {wallet?.telegram && (
+                  <a href={wallet.telegram} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-counterparty-red transition-colors duration-300">
+                    <i class={socialIcons.telegram}></i>
+                  </a>
+                )}
+              </div>
+              <div class="flex space-x-2">
+                {Object.entries(wallet?.platforms || {}).filter(([key]) => key !== '__typename').map(([platform, available]) => (
+                  available && (
+                    <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full" title={platform}>
+                      <i class={`${platformIcons[platform as keyof typeof platformIcons]} mr-1`}></i>
+                      {platform}
+                    </span>
+                  )
+                ))}
               </div>
             </div>
           </div>
@@ -121,14 +119,8 @@ const socialIcons = {
   </div>
 </section>
 
-<CommonStyles />
-
 <style>
-  .wallets {
-    position: relative;
-  }
-
-  .wallets::before {
+  #wallets::before {
     content: '';
     position: absolute;
     top: 0;
@@ -140,175 +132,6 @@ const socialIcons = {
     mask-image: linear-gradient(to bottom, transparent, black);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black);
     z-index: 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-  }
-
-  .card {
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    padding: 1.5rem;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
-
-  .wallet-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-  }
-
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 500;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #6c757d;
-  }
-
-  .card-footer {
-    padding-top: 1rem;
-  }
-
-  .btn-primary {
-    background-color: #EC1550;
-    border-color: #EC1550;
-    padding: 0.5rem 1.5rem;
-  }
-
-  .btn-primary:hover {
-    background-color: #d01348;
-    border-color: #d01348;
-  }
-
-  .features,
-  .platforms {
-    font-size: 0.9rem;
-  }
-
-  .badge {
-    font-weight: normal;
-    text-transform: capitalize;
-    padding: 0.4em 0.8em;
-  }
-  
-  .platform-icon {
-    font-size: 1.2rem;
-    color: #6c757d;
-  }
-
-  .feature-badge {
-    font-size: 0.85rem;
-    font-weight: normal;
-    text-transform: capitalize;
-    padding: 0.4em 0.8em;
-    border-radius: 20px;
-  }
-
-  .bg-feature-enabled {
-    background-color: #fde8ec;
-    color: #EC1550;
-  }
-
-  .bg-feature-disabled {
-    background-color: #f8f9fa;
-    color: #9a9ea2;
-  }
-
-  .feature-badge i {
-    font-size: 1rem;
-  }
-
-  .platform-icon {
-    font-size: 0.85rem;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 0.4em 0.8em;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  .platform-icon i {
-    margin-right: 0.5em;
-  }
-
-  .features {
-    margin-bottom: 1.5rem;
-  }
-
-  .v104-badge {
-    background-color: #28a745;
-    color: white;
-    font-size: 0.75rem;
-    padding: 0.25em 0.5em;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    cursor: help;
-  }
-
-  .version-indicator {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.75rem;
-    padding: 0.25em 0.5em;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    cursor: help;
-  }
-
-  .version-indicator.compatible {
-    color: #28a745;
-  }
-
-  .version-indicator.incompatible {
-    color: #6c757d;
-    opacity: 0.6;
-  }
-
-  .indicator-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    margin-right: 0.25em;
-  }
-
-  .compatible .indicator-dot {
-    background-color: #28a745;
-  }
-
-  .incompatible .indicator-dot {
-    background-color: #6c757d;
-  }
-
-  .version-text {
-    line-height: 1;
-  }
-
-  .social-links a {
-    text-decoration: none !important;
-    margin-right: 5px;
-  }
-
-  .social-icon {
-    font-size: 1.2rem;
-    color: #6c757d;
-    transition: color 0.3s ease;
-    text-decoration: none;
-  }
-
-  .social-icon:hover {
-    color: #EC1550;
   }
 </style>
 

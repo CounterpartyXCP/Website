@@ -1,67 +1,44 @@
 ---
 import { client } from "../../../tina/__generated__/client";
+import BlockCountdown from "../BlockCountdown";
 
 const headerResponse = await client.queries.header({ relativePath: "header.md" });
 const header = headerResponse.data.header;
+
+// Function to add line breaks
+function addLineBreaks(text: string, wordsPerLine = 4) {
+  const words = text.split(' ');
+  const lines = [];
+  for (let i = 0; i < words.length; i += wordsPerLine) {
+    lines.push(words.slice(i, i + wordsPerLine).join(' '));
+  }
+  return lines.join(' ');
+}
 ---
 
-<header class="py-5">
-  <div class="container h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-lg-5">
-        <h1 class="display-4 mb-4">{header.title}</h1>
-        <div class="d-flex flex-wrap gap-2">
+<header class="py-5 mt-16 bg-no-repeat bg-right bg-contain h-[550px]" style="background-image: url('/images/header_bg.png');">
+  <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <div class="flex flex-col lg:flex-row items-center h-full">
+      <div class="lg:w-7/12">
+        <h1 class="text-blue-900 font-readex-pro text-5xl font-normal leading-tight tracking-tighter mb-4 max-w-xl" set:html={addLineBreaks(header.title)} />
+        <div class="flex flex-wrap gap-2 mb-4">
           {header.ctaButtons?.map((button) => (
-            <a href={button?.link} class="btn btn-custom">{button?.label}</a>
+            <a href={button?.link} class="btn-custom">{button?.label}</a>
           ))}
         </div>
+      </div>
+      <div class="lg:w-5/12">
+        <BlockCountdown client:load />
       </div>
     </div>
   </div>
 </header>
 
 <style>
-  :root {
-    --ec-1550: #EC1550;
-  }
-
-  header {
-    color: #293C70;
-    margin-top: 66px;
-    background-image: url('/images/header_bg.png');
-    background-size: contain;
-    background-position: right;
-    background-repeat: no-repeat;
-    height: 550px;
-  }
-
-  h1 {
-    font-size: 40px;
-    font-weight: 400;
-    letter-spacing: -2.4px;
-    line-height: 1.2;
-    color: #293C70;
-  }
-
   .btn-custom {
-    color: #FFF;
-    font-family: "Readex Pro", sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.72px;
-    padding: 14px 22px;
-    background-color: var(--ec-1550);
-    border-color: var(--ec-1550);
+    @apply text-white font-readex-pro text-base font-normal py-3.5 px-5.5 bg-counterparty-red hover:bg-red-600 transition-colors duration-300 rounded;
     text-edge: cap;
     font-feature-settings: 'ss02' on;
-  }
-
-  .btn-custom:hover {
-    background-color: #d01348;
-    border-color: #d01348;
-    color: #FFF;
   }
 
   /* For browsers that support it */

@@ -1,42 +1,31 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import CommonStyles from "../CommonStyles.astro";
 
 const wicResponse = await client.queries.whatiscounterparty({ relativePath: "whatiscounterparty.md" });
 const whatiscounterparty = wicResponse.data.whatiscounterparty;
 ---
 
-<section class="what-is-counterparty py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">{whatiscounterparty.title}</h2>
-    <div class="row justify-content-center mb-5">
-      <div class="col-lg-8">
-        <div class="text-center">
-          <TinaMarkdown content={whatiscounterparty.description} />
-        </div>
+<section class="bg-white py-12">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-light text-blue-900 text-center mb-8">{whatiscounterparty.title}</h2>
+    <div class="max-w-3xl mx-auto mb-12">
+      <div class="text-center text-blue-900">
+        <TinaMarkdown content={whatiscounterparty.description} />
       </div>
     </div>
-    <div class="row">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {whatiscounterparty.keyFeatures?.map((feature) => (
-        <div class="col-md-4 mb-4">
-          <div class="feature-item">
-            <div class="feature-header">
-              {feature?.icon && (
-                <img src={feature.icon} alt={feature?.title} class="feature-icon" />
-              )}
-              <h3 class="feature-title">{feature?.title}</h3>
-            </div>
-            <p class="feature-description">{feature?.description}</p>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="flex items-center mb-4">
+            {feature?.icon && (
+              <img src={feature.icon} alt={feature?.title} class="w-8 h-8 object-contain mr-4" />
+            )}
+            <h3 class="text-xl font-normal text-counterparty-red">{feature?.title}</h3>
           </div>
+          <p class="text-sm text-blue-900 leading-relaxed font-light">{feature?.description}</p>
         </div>
       ))}
     </div>
   </div>
 </section>
-
-<CommonStyles />
-
-<style>
-  /* Add any component-specific styles here */
-</style>
