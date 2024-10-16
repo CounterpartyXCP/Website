@@ -1,8 +1,15 @@
 ---
 import { client } from "../../../tina/__generated__/client";
+import { Icon } from 'astro-icon/components';
 
 const contributeResponse = await client.queries.contribute({ relativePath: "contribute.md" });
 const contributeContent = contributeResponse.data.contribute;
+
+const brandIcons = ['github', 'telegram', 'x-twitter', 'discord'];
+
+function getIconName(icon: string) {
+  return brandIcons.includes(icon) ? `fa6-brands:${icon}` : `fa6-solid:${icon}`;
+}
 ---
 
 <section id="contribute" class="bg-white py-16 pb-24 relative">
@@ -17,7 +24,7 @@ const contributeContent = contributeResponse.data.contribute;
         <div class="flex justify-center space-x-6">
           {contributeContent?.developmentLinks?.map((link: any) => (
             <a href={link?.url} target="_blank" rel="noopener noreferrer" class="text-counterparty-red hover:text-red-600 transition-colors duration-300">
-              <i class={`${link?.icon} text-4xl`}></i>
+              <Icon name={getIconName(link?.icon)} class="w-8 h-8" />
             </a>
           ))}
         </div>
@@ -28,7 +35,7 @@ const contributeContent = contributeResponse.data.contribute;
         <div class="flex justify-center space-x-6">
           {contributeContent?.communityLinks?.map((link: any) => (
             <a href={link?.url} target="_blank" rel="noopener noreferrer" class="text-counterparty-red hover:text-red-600 transition-colors duration-300">
-              <i class={`${link?.icon} text-4xl`}></i>
+              <Icon name={getIconName(link?.icon)} class="w-8 h-8" />
             </a>
           ))}
         </div>

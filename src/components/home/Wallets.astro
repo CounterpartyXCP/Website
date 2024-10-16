@@ -1,6 +1,7 @@
 ---
 import { client } from "../../../tina/__generated__/client";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { Icon } from 'astro-icon/components';
 
 const walletsPageResponse = await client.queries.walletsPage({ relativePath: "wallets.md" });
 const walletsPageContent = walletsPageResponse.data.walletsPage;
@@ -19,20 +20,20 @@ const walletList = (await Promise.all(
 )).filter(wallet => wallet !== null);
 
 const featureIcons = {
-  dispensers: "fa-solid fa-faucet",
-  assetCreation: "fa-solid fa-plus",
-  dex: "fa-solid fa-arrows-rotate",
+  dispensers: "faucet",
+  assetCreation: "plus",
+  dex: "arrows-rotate",
 };
 
 const platformIcons = {
-  web: "fa-solid fa-globe",
-  mobile: "fa-solid fa-mobile-screen",
-  desktop: "fa-solid fa-desktop",
+  web: "globe",
+  mobile: "mobile-screen",
+  desktop: "desktop",
 };
 
 const socialIcons = {
-  twitter: "fa-brands fa-x-twitter",
-  telegram: "fa-brands fa-telegram",
+  twitter: "x-twitter",
+  telegram: "telegram",
 };
 ---
 
@@ -58,13 +59,13 @@ const socialIcons = {
               </div>
               <div class="flex items-center">
                 {!wallet?.isV104Compatible && (
-                  <i class="fas fa-exclamation-triangle text-yellow-500 mr-1 text-sm"></i>
+                  <Icon name="fa6-solid:triangle-exclamation" class="text-yellow-500 mr-1 w-4 h-4" />
                 )}
                 <span 
                   class={`inline-flex items-center text-xs font-bold ${wallet?.isV104Compatible ? 'text-green-500' : 'text-gray-400'}`}
                   data-bs-toggle="tooltip"
                   data-bs-placement="top"
-                  title={wallet?.isV104Compatible ? "Compatible with latest protocol version" : "Not compatible with latest protocol version"}
+                  title={wallet?.isV104Compatible ? "Compatible with latest protocol version" : "Not fully compatible with latest protocol version"}
                 >
                   <span class={`w-2 h-2 rounded-full mr-1 ${wallet?.isV104Compatible ? 'bg-green-500' : 'bg-gray-400'}`}></span>
                   v10.4
@@ -77,7 +78,7 @@ const socialIcons = {
               <div class="flex flex-wrap gap-2">
                 {Object.entries(wallet?.features || {}).filter(([key]) => key !== '__typename').map(([feature, enabled]) => (
                   <span class={`text-xs px-2 py-1 rounded-full ${enabled ? 'bg-red-100 text-counterparty-red' : 'bg-gray-100 text-gray-500'}`}>
-                    <i class={`${featureIcons[feature as keyof typeof featureIcons]} mr-1`}></i>
+                    <Icon name={`fa6-solid:${featureIcons[feature as keyof typeof featureIcons]}`} class="w-3 h-3 inline-block mr-1" />
                     {feature}
                   </span>
                 ))}
@@ -92,12 +93,12 @@ const socialIcons = {
               <div class="flex space-x-2">
                 {wallet?.twitter && (
                   <a href={wallet.twitter} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-counterparty-red transition-colors duration-300">
-                    <i class={socialIcons.twitter}></i>
+                    <Icon name="fa6-brands:x-twitter" class="w-4 h-4" />
                   </a>
                 )}
                 {wallet?.telegram && (
                   <a href={wallet.telegram} target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-counterparty-red transition-colors duration-300">
-                    <i class={socialIcons.telegram}></i>
+                    <Icon name="fa6-brands:telegram" class="w-4 h-4" />
                   </a>
                 )}
               </div>
@@ -105,7 +106,7 @@ const socialIcons = {
                 {Object.entries(wallet?.platforms || {}).filter(([key]) => key !== '__typename').map(([platform, available]) => (
                   available && (
                     <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full" title={platform}>
-                      <i class={`${platformIcons[platform as keyof typeof platformIcons]} mr-1`}></i>
+                      <Icon name={`fa6-solid:${platformIcons[platform as keyof typeof platformIcons]}`} class="w-3 h-3 inline-block mr-1" />
                       {platform}
                     </span>
                   )

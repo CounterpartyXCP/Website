@@ -1,8 +1,11 @@
 ---
 const navItems = [
-  { label: "Get Started", href: "/get-started" },
-  { label: "Releases", href: "/releases" },
-  { label: "Docs", href: "/docs" },
+  // { label: "Get Started", href: "/get-started" },
+  // { label: "Releases", href: "/releases" },
+  { label: "Wallets", href: "/#wallets" },
+  { label: "Explorers", href: "/#explorers" },
+  { label: "Marketplaces", href: "/#marketplaces" },
+  { label: "Docs", href: "https://docs.counterparty.io/", external: true },
   { label: "News", href: "/news" },
   { label: "Projects", href: "/projects" },
 ];
@@ -19,7 +22,11 @@ const navItems = [
       </div>
       <div class="hidden md:flex md:items-center md:space-x-4">
         {navItems.map((item) => (
-          <a href={item.href} class="text-blue-900 hover:text-counterparty-red px-2 py-2 rounded-md font-light tracking-tighter transition duration-300">
+          <a 
+            href={item.href} 
+            class="text-blue-900 hover:text-counterparty-red px-2 py-2 rounded-md font-light tracking-tighter transition duration-300"
+            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
             {item.label}
           </a>
         ))}
@@ -38,7 +45,11 @@ const navItems = [
   <div class="md:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-3 space-y-1">
       {navItems.map((item) => (
-        <a href={item.href} class="text-blue-900 hover:text-counterparty-red block px-3 py-2 rounded-md text-base font-light tracking-tighter transition duration-300">
+        <a 
+          href={item.href} 
+          class="text-blue-900 hover:text-counterparty-red block px-3 py-2 rounded-md text-base font-light tracking-tighter transition duration-300"
+          {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
           {item.label}
         </a>
       ))}
