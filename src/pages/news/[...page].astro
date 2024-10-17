@@ -61,7 +61,7 @@ const groupedNews = page.data.reduce((acc, news) => {
 <Layout title="Counterparty news">
   <main class="bg-white py-16 relative">
     <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
-    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-screen-fxl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <nav class="mb-4" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-1 text-sm">
           <li><a href="/" class="text-blue-900 hover:text-counterparty-red">Home</a></li>
@@ -71,7 +71,7 @@ const groupedNews = page.data.reduce((acc, news) => {
       </nav>
       <h1 class="text-4xl font-light text-blue-900 mb-8">Counterparty news</h1>
 
-      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+      <!-- <div class="bg-white rounded-lg shadow-md p-6 mb-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <h3 class="text-lg font-semibold text-blue-900 mb-2">Tags:</h3>
@@ -125,7 +125,7 @@ const groupedNews = page.data.reduce((acc, news) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="space-y-12">
         {Object.entries(groupedNews).reverse().map(([year, months]) => (

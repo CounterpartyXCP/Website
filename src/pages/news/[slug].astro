@@ -2,6 +2,7 @@
 import { client } from "../../../tina/__generated__/client";
 import Layout from '../../layouts/Layout.astro';
 import { Tweet } from 'astro-embed';
+import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
   const newsResponse = await client.queries.newsConnection();
@@ -37,123 +38,179 @@ try {
 ---
 
 <Layout title={`${news?.title || 'News'} - Counterparty News`}>
-  <main>
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <ol>
-        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
-        <li><i class="fas fa-chevron-right"></i><a href="/news">News</a></li>
-        <li><i class="fas fa-chevron-right" aria-hidden="true"></i><span aria-current="page">{news?.title}</span></li>
-      </ol>
-    </nav>
-    <article class="news-article">
-      <h1>{news?.title}</h1>
-      <p class="date">{new Date(news?.date ?? Date.now()).toLocaleDateString()}</p>
-      {news?.image && <img src={news.image} alt={news.title} class="featured-image" />}
-      <div class="tags">
-        {news?.tags?.map(tag => <span class="tag">{tag}</span>)}
-      </div>
-      <div class="content">
-        {Content ? <Content components={{ Tweet }} /> : <p>Content not found.</p>}
-      </div>
-    </article>
+  <main class="bg-white py-16 relative">
+    <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <nav class="mb-4" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-1 text-sm">
+          <li><a href="/" class="text-blue-900 hover:text-counterparty-red">Home</a></li>
+          <li><span class="text-blue-900 mx-1">&gt;</span></li>
+          <li><a href="/news" class="text-blue-900 hover:text-counterparty-red">News</a></li>
+          <li><span class="text-blue-900 mx-1">&gt;</span></li>
+          <li><span class="text-counterparty-red">{news?.title}</span></li>
+        </ol>
+      </nav>
+
+      <article class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="w-full h-64 bg-[#c8c8c8] overflow-hidden">
+          {news?.image ? (
+            <img src={news.image} alt={news.title} class="w-full h-full object-none" />
+          ) : news?.title?.toLowerCase().includes('newsletter') ? (
+            <img src="/images/default-newsletter.png" alt="Default Newsletter Image" class="w-full h-full object-none" />
+          ) : (
+            <img src="/images/default-dev-update.png" alt="Default Development Update Image" class="w-full h-full object-none" />
+          )}
+        </div>
+        
+        <div class="p-8">
+          <h1 class="text-4xl font-light text-blue-900 mb-4">{news?.title}</h1>
+          
+          <div class="flex items-center text-sm text-gray-400 mb-4">
+            <span class="mr-2">{new Date(news?.date ?? Date.now()).toLocaleDateString()}</span>
+            {news?.author && <span class="text-counterparty-red mr-2">by {news.author}</span>}
+            {news?.tags && news.tags.length > 0 && (
+              <div class="flex flex-wrap gap-2">
+                {news.tags.map(tag => (
+                  <span class="text-xs px-2 py-1 bg-gray-100 text-gray-600 rounded-full">{tag}</span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div class="prose max-w-none news-content">
+            {Content ? <Content components={{ Tweet }} /> : <p>Content not found.</p>}
+          </div>
+        </div>
+      </article>
+    </div>
   </main>
 </Layout>
 
 <style>
-  main {
-    margin: auto;
-    padding: 2rem 1rem;
-    max-width: 800px;
-    margin-top: 60px; /* Add this line to create space below the navbar */
+  main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/pattern.png');
+    background-repeat: repeat;
+    opacity: 0.6;
+    z-index: 0;
   }
-  .news-article {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    margin-top: 1rem; /* Add some space between breadcrumb and article */
-  }
-  h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .date {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 1.5rem;
-  }
-  .tags {
-    margin-bottom: 1.5rem;
-  }
-  .tag {
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-  }
-  .featured-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-  }
-  .content {
-    line-height: 1.8;
+
+  .news-content {
+    color: #293C70;
+    font-family: "Readex Pro", sans-serif;
     font-size: 1.1rem;
-  }
-  .content :global(h2) {
-    font-size: 1.8rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  .content :global(p) {
-    margin-bottom: 1rem;
-  }
-  .content :global(a) {
-    color: #0077cc;
-    text-decoration: none;
-  }
-  .content :global(a:hover) {
-    text-decoration: underline;
-  }
-  .breadcrumb {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    padding-top: 1rem; /* Add some padding to the top of the breadcrumb */
-  }
+    font-style: normal;
+    font-weight: 300;
+    line-height: 160%;
+    letter-spacing: -0.4px;
 
-  .breadcrumb ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-  }
+    h1 {
+      color: #293C70;
+      font-family: "Readex Pro", sans-serif;
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: -1.6px;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
 
-  .breadcrumb li {
-    display: flex;
-    align-items: center;
-  }
+    h2 {
+      color: #293C70;
+      font-family: "Readex Pro", sans-serif;
+      font-size: 1.6rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: -1.2px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
 
-  .breadcrumb a {
-    color: #0077cc;
-    text-decoration: none;
-  }
+    h3 {
+      color: #293C70;
+      font-family: "Readex Pro", sans-serif;
+      font-size: 1.4rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: -1.2px;
+      margin-top: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
 
-  .breadcrumb a:hover {
-    text-decoration: underline;
-  }
+    h4 {
+      color: #293C70;
+      font-family: "Readex Pro", sans-serif;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 130%;
+      letter-spacing: -1.2px;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+    }
 
-  .breadcrumb i {
-    font-size: 0.8rem;
-    margin: 0 0.5rem;
-    color: #666;
-  }
+    p {
+      margin-bottom: 1rem;
+    }
 
-  .breadcrumb span {
-    color: #666;
+    a {
+      color: #ef4444;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 1.5em;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-left: 3px solid #f36d33;
+      color: #6e6e6e;
+      page-break-inside: avoid;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 1.6em;
+      max-width: 100%;
+      overflow: auto;
+      padding: 1em 1.5em;
+      display: block;
+      word-wrap: break-word;
+    }
+
+    code {
+      background-color: #f4f4f4;
+      border-radius: 3px;
+      color: #6e6e6e;
+      font-family: monospace;
+      padding: 0.2em 0.4em;
+      font-size: 1rem;
+    }
+
+    pre code {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+    }
   }
 
   /* Add styles for embedded tweets */
