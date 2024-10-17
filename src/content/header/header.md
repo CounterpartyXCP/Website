@@ -1,5 +1,5 @@
 ---
-title: The OG tokenization protocol on Bitcoin
+title: Original DeFi and NFT Protocol on Bitcoin
 description: >-
   Create, trade, and innovate with smart contracts and digital assets on the
   Bitcoin blockchain.

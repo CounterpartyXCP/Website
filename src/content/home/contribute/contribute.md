@@ -1,7 +1,7 @@
 ---
 title: Join Counterparty
 subtitle: Your contributions drive Counterparty forward. Whether you're a developer, designer, or enthusiast, there's a place for you.
-developmentTitle: Get involved in development and report issues
+developmentTitle: Get involved in development or report issues
 communityTitle: Connect with other community members
 developmentLinks:
   - title: GitHub

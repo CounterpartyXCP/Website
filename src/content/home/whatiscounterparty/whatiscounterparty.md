@@ -10,11 +10,10 @@ keyFeatures:
     icon: /images/icons/nft.svg
   - title: Automate Agreements.
     description: >-
-      Uses smart contracts to automate complex financial agreements. By using
-      programmable logic, users can create custom financial instruments that
-      execute automatically when certain conditions are met. This allows for a
-      more efficient and secure way to manage financial agreements on the
-      blockchain.
+      Uses smart contracts to automate complex financial agreements. Users can
+      create custom financial instruments that execute automatically when
+      certain conditions are met. This allows for a more efficient and secure
+      way to manage financial agreements on the blockchain.
     icon: /images/icons/smart-contract.svg
   - title: Build DApps.
     description: >-

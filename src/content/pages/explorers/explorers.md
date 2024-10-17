@@ -1,11 +1,11 @@
 ---
 title: Explorers
 generalPurposeIntro: >
-  These are explorers which are use-case agnostic and support most or all the
-  Counterparty protocol.
+  These are explorers which are use-case agnostic and support most or all of
+  the Counterparty protocol.
 themedIntro: >
-  These are explorers with a particular focus, either concerning a specific part
-  of the Counterparty protocol or ecosystem.
+  These are explorers with a particular focus on one part of the larger
+  Counterparty ecosystem.
 explorerList:
   - horizon-explorer.md
   - memepool.md
