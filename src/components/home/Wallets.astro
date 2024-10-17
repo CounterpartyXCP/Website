@@ -57,7 +57,7 @@ const socialIcons = {
                 <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="w-10 h-10 object-contain mr-3" />
                 <h3 class="text-xl font-normal text-blue-900">{wallet?.title}</h3>
               </div>
-              <div class="flex items-center">
+              <div class="flex items-center hidden">
                 {!wallet?.isV104Compatible && (
                   <Icon name="fa6-solid:triangle-exclamation" class="text-yellow-500 mr-1 w-4 h-4" />
                 )}
