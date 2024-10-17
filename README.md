@@ -154,7 +154,7 @@ Please make sure to update tests as appropriate and adhere to the project's codi
 
 ## 📄 License
 
-[Insert appropriate license information here]
+This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).
 
 ## 🌐 Learn More
 
