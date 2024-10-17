@@ -1,7 +1,7 @@
 ---
 title: Marketplaces
 introduction: >
-  These marketplaces let you buy and trade NFTs on the Counterparty network in
+  These marketplaces let you buy and trade NFTs of the Counterparty ecosystem in
   different ways, from on-chain to cross-chain.
 marketplaceList:
   - name: Pepe.wtf
