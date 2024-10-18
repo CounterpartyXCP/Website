@@ -6,8 +6,10 @@ import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
   const newsResponse = await client.queries.newsConnection();
+  console.log(newsResponse);
   const paths = newsResponse.data.newsConnection.edges?.map(edge => {
     const slug = edge?.node?.slug || edge?.node?._sys.filename;
+    console.log(slug);
     console.log(`Generated path for slug: ${slug}`);
     return {
       params: { slug },

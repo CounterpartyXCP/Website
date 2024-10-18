@@ -28,6 +28,8 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   // Filtrer les actualités publiées
   const publishedNews = allNews.filter(news => news && news.status === "published");
 
+  //console.log(publishedNews);
+
   // Trier les actualités par date (du plus récent au plus ancien)
   publishedNews.sort((a, b) => {
     if (!a || !b) return 0;
@@ -61,7 +63,7 @@ const groupedNews = page.data.reduce((acc, news) => {
 <Layout title="Counterparty news">
   <main class="bg-white py-16 relative">
     <div class="absolute inset-0 bg-repeat opacity-10 z-0" style="background-image: url('/images/pattern.png');"></div>
-    <div class="max-w-screen-fxl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <nav class="mb-4" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-1 text-sm">
           <li><a href="/" class="text-blue-900 hover:text-counterparty-red">Home</a></li>
@@ -209,142 +211,142 @@ const groupedNews = page.data.reduce((acc, news) => {
 </style>
 
 <script>
-  const tagButtons = document.querySelectorAll('[data-tag]');
-  const newsItems = document.querySelectorAll('article');
-  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  // const tagButtons = document.querySelectorAll('[data-tag]');
+  // const newsItems = document.querySelectorAll('article');
+  // const searchInput = document.getElementById('search-input') as HTMLInputElement;
 
-  const multiselectSelected = document.getElementById('selected-authors');
-  const authorDropdown = document.querySelector('[x-show="open"]') as HTMLElement;
-  const allAuthorsCheckbox = document.getElementById('all-authors') as HTMLInputElement;
-  const authorCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(#all-authors)') as NodeListOf<HTMLInputElement>;
+  // const multiselectSelected = document.getElementById('selected-authors');
+  // const authorDropdown = document.querySelector('[x-show="open"]') as HTMLElement;
+  // const allAuthorsCheckbox = document.getElementById('all-authors') as HTMLInputElement;
+  // const authorCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(#all-authors)') as NodeListOf<HTMLInputElement>;
 
-  function applyFilters() {
-    const selectedTags = Array.from(document.querySelectorAll('[data-tag].active')).map(el => el.getAttribute('data-tag'));
-    const selectedAuthors = Array.from(authorCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
-    const searchTerm = searchInput.value.toLowerCase();
+  // function applyFilters() {
+  //   const selectedTags = Array.from(document.querySelectorAll('[data-tag].active')).map(el => el.getAttribute('data-tag'));
+  //   const selectedAuthors = Array.from(authorCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+  //   const searchTerm = searchInput.value.toLowerCase();
 
-    newsItems.forEach(item => {
-      const tags = Array.from(item.querySelectorAll('.text-xs.px-2.py-1.bg-gray-100')).map(tag => tag.textContent?.trim() || '');
-      const author = item.querySelector('.text-sm.text-gray-600 span:last-child')?.textContent?.replace('by ', '').trim() || '';
-      const title = item.querySelector('h4')?.textContent?.toLowerCase() || '';
-      const excerpt = item.querySelector('.text-gray-700.mb-4')?.textContent?.toLowerCase() || '';
+  //   newsItems.forEach(item => {
+  //     const tags = Array.from(item.querySelectorAll('.text-xs.px-2.py-1.bg-gray-100')).map(tag => tag.textContent?.trim() || '');
+  //     const author = item.querySelector('.text-sm.text-gray-600 span:last-child')?.textContent?.replace('by ', '').trim() || '';
+  //     const title = item.querySelector('h4')?.textContent?.toLowerCase() || '';
+  //     const excerpt = item.querySelector('.text-gray-700.mb-4')?.textContent?.toLowerCase() || '';
 
-      const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => tags.includes(tag));
-      const authorMatch = allAuthorsCheckbox.checked || selectedAuthors.includes(author);
-      const searchMatch = !searchTerm || title.includes(searchTerm) || excerpt.includes(searchTerm);
+  //     const tagMatch = selectedTags.length === 0 || selectedTags.some(tag => tags.includes(tag));
+  //     const authorMatch = allAuthorsCheckbox.checked || selectedAuthors.includes(author);
+  //     const searchMatch = !searchTerm || title.includes(searchTerm) || excerpt.includes(searchTerm);
 
-      item.style.display = tagMatch && authorMatch && searchMatch ? '' : 'none';
-    });
+  //     item.style.display = tagMatch && authorMatch && searchMatch ? '' : 'none';
+  //   });
 
-    updateGroupVisibility();
-    updateEmptyState();
-  }
+  //   updateGroupVisibility();
+  //   updateEmptyState();
+  // }
 
-  tagButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      button.classList.toggle('active');
-      applyFilters();
-    });
-  });
+  // tagButtons.forEach(button => {
+  //   button.addEventListener('click', () => {
+  //     button.classList.toggle('active');
+  //     applyFilters();
+  //   });
+  // });
 
-  searchInput.addEventListener('input', applyFilters);
+  // searchInput.addEventListener('input', applyFilters);
 
-  function updateGroupVisibility() {
-    const yearGroups = document.querySelectorAll('.space-y-12 > div');
-    yearGroups.forEach(yearGroup => {
-      const visibleItems = yearGroup.querySelectorAll('article:not([style*="display: none"])');
-      (yearGroup as HTMLElement).style.display = visibleItems.length > 0 ? '' : 'none';
+  // function updateGroupVisibility() {
+  //   const yearGroups = document.querySelectorAll('.space-y-12 > div');
+  //   yearGroups.forEach(yearGroup => {
+  //     const visibleItems = yearGroup.querySelectorAll('article:not([style*="display: none"])');
+  //     (yearGroup as HTMLElement).style.display = visibleItems.length > 0 ? '' : 'none';
 
-      const monthGroups = yearGroup.querySelectorAll('.mb-8');
-      monthGroups.forEach(monthGroup => {
-        const visibleMonthItems = monthGroup.querySelectorAll('article:not([style*="display: none"])');
-        (monthGroup as HTMLElement).style.display = visibleMonthItems.length > 0 ? '' : 'none';
-      });
-    });
-  }
+  //     const monthGroups = yearGroup.querySelectorAll('.mb-8');
+  //     monthGroups.forEach(monthGroup => {
+  //       const visibleMonthItems = monthGroup.querySelectorAll('article:not([style*="display: none"])');
+  //       (monthGroup as HTMLElement).style.display = visibleMonthItems.length > 0 ? '' : 'none';
+  //     });
+  //   });
+  // }
 
-  function updateEmptyState() {
-    const visibleItems = document.querySelectorAll('article:not([style*="display: none"])');
-    const emptyState = document.querySelector('.empty-state') || createEmptyState();
+  // function updateEmptyState() {
+  //   const visibleItems = document.querySelectorAll('article:not([style*="display: none"])');
+  //   const emptyState = document.querySelector('.empty-state') || createEmptyState();
 
-    const newsList = document.querySelector('.space-y-12');
-    if (visibleItems.length === 0 && newsList) {
-      newsList.appendChild(emptyState);
-    } else {
-      emptyState.remove();
-    }
-  }
+  //   const newsList = document.querySelector('.space-y-12');
+  //   if (visibleItems.length === 0 && newsList) {
+  //     newsList.appendChild(emptyState);
+  //   } else {
+  //     emptyState.remove();
+  //   }
+  // }
 
-  function createEmptyState() {
-    const div = document.createElement('div');
-    div.className = 'empty-state';
-    div.textContent = 'No news items match the selected filters.';
-    return div;
-  }
+  // function createEmptyState() {
+  //   const div = document.createElement('div');
+  //   div.className = 'empty-state';
+  //   div.textContent = 'No news items match the selected filters.';
+  //   return div;
+  // }
 
-  multiselectSelected?.addEventListener('click', () => {
-    authorDropdown.classList.toggle('hidden');
-  });
+  // multiselectSelected?.addEventListener('click', () => {
+  //   authorDropdown.classList.toggle('hidden');
+  // });
 
-  document.addEventListener('click', (event) => {
-    if (!(event.target as HTMLElement).closest('.relative')) {
-      authorDropdown.classList.add('hidden');
-    }
-  });
+  // document.addEventListener('click', (event) => {
+  //   if (!(event.target as HTMLElement).closest('.relative')) {
+  //     authorDropdown.classList.add('hidden');
+  //   }
+  // });
 
-  allAuthorsCheckbox.addEventListener('change', () => {
-    authorCheckboxes.forEach((checkbox) => {
-      checkbox.checked = allAuthorsCheckbox.checked;
-    });
-    updateSelectedAuthors();
-    applyFilters();
-  });
+  // allAuthorsCheckbox.addEventListener('change', () => {
+  //   authorCheckboxes.forEach((checkbox) => {
+  //     checkbox.checked = allAuthorsCheckbox.checked;
+  //   });
+  //   updateSelectedAuthors();
+  //   applyFilters();
+  // });
 
-  authorCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', () => {
-      updateSelectedAuthors();
-      applyFilters();
-    });
-  });
+  // authorCheckboxes.forEach((checkbox) => {
+  //   checkbox.addEventListener('change', () => {
+  //     updateSelectedAuthors();
+  //     applyFilters();
+  //   });
+  // });
 
-  function updateSelectedAuthors() {
-    const selectedAuthors = Array.from(authorCheckboxes)
-      .filter((checkbox) => checkbox.checked)
-      .map((checkbox) => checkbox.value);
+  // function updateSelectedAuthors() {
+  //   const selectedAuthors = Array.from(authorCheckboxes)
+  //     .filter((checkbox) => checkbox.checked)
+  //     .map((checkbox) => checkbox.value);
 
-    if (selectedAuthors.length === 0 || selectedAuthors.length === authorCheckboxes.length) {
-      allAuthorsCheckbox.checked = true;
-      const span = multiselectSelected?.querySelector('span');
-      if (span) span.textContent = 'All authors';
-    } else {
-      allAuthorsCheckbox.checked = false;
-      const span = multiselectSelected?.querySelector('span');
-      if (span) span.textContent = selectedAuthors.join(', ');
-    }
-  }
+  //   if (selectedAuthors.length === 0 || selectedAuthors.length === authorCheckboxes.length) {
+  //     allAuthorsCheckbox.checked = true;
+  //     const span = multiselectSelected?.querySelector('span');
+  //     if (span) span.textContent = 'All authors';
+  //   } else {
+  //     allAuthorsCheckbox.checked = false;
+  //     const span = multiselectSelected?.querySelector('span');
+  //     if (span) span.textContent = selectedAuthors.join(', ');
+  //   }
+  // }
 
-  // Initial call to set up the filters
-  applyFilters();
+  // // Initial call to set up the filters
+  // applyFilters();
 
-  // Persist selected tags
-  const storedTags = localStorage.getItem('selectedTags');
-  if (storedTags) {
-    const selectedTags = JSON.parse(storedTags);
-    tagButtons.forEach(button => {
-      if (selectedTags.includes(button.getAttribute('data-tag'))) {
-        button.classList.add('active');
-      }
-    });
-    applyFilters();
-  }
+  // // Persist selected tags
+  // const storedTags = localStorage.getItem('selectedTags');
+  // if (storedTags) {
+  //   const selectedTags = JSON.parse(storedTags);
+  //   tagButtons.forEach(button => {
+  //     if (selectedTags.includes(button.getAttribute('data-tag'))) {
+  //       button.classList.add('active');
+  //     }
+  //   });
+  //   applyFilters();
+  // }
 
-  // Save selected tags to localStorage when changed
-  tagButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const selectedTags = Array.from(document.querySelectorAll('[data-tag].active')).map(el => el.getAttribute('data-tag'));
-      localStorage.setItem('selectedTags', JSON.stringify(selectedTags));
-    });
-  });
+  // // Save selected tags to localStorage when changed
+  // tagButtons.forEach(button => {
+  //   button.addEventListener('click', () => {
+  //     const selectedTags = Array.from(document.querySelectorAll('[data-tag].active')).map(el => el.getAttribute('data-tag'));
+  //     localStorage.setItem('selectedTags', JSON.stringify(selectedTags));
+  //   });
+  // });
 </script>
 
 <style>

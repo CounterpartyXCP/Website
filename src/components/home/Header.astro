@@ -20,16 +20,16 @@ function addLineBreaks(text: string, wordsPerLine = 4) {
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
     <div class="flex flex-col lg:flex-row items-center h-full">
       <div class="lg:w-7/12">
-        <h1 class="text-blue-900 font-readex-pro text-3xl sm:text-4xl md:text-5xl font-normal leading-tight tracking-tighter mb-4 max-w-xl" set:html={addLineBreaks(header.title)} />
+        <h1 class="text-blue-900 font-readex-pro text-3xl sm:text-4xl md:text-5xl font-normal leading-tight tracking-tighter mb-4 max-w-xl" set:html={addLineBreaks(header.title).replace(/DeFi/g, '<span class="small-caps">DeFi</span>').replace(/NFT/g, '<span class="small-caps">NFT</span>')} />
         <div class="flex flex-wrap gap-2 mb-4">
           {header.ctaButtons?.map((button) => (
             <a href={button?.link} class="btn-custom">{button?.label}</a>
           ))}
         </div>
       </div>
-      <div class="lg:w-5/12">
+      <!-- <div class="lg:w-5/12">
         <BlockCountdown client:load />
-      </div>
+      </div> -->
     </div>
   </div>
 </header>
@@ -46,5 +46,9 @@ function addLineBreaks(text: string, wordsPerLine = 4) {
     .btn-custom {
       font-variant-alternates: styleset(ss02);
     }
+  }
+
+  .small-caps {
+    font-variant: small-caps;
   }
 </style>
