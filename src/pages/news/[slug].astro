@@ -5,17 +5,33 @@ import { Tweet } from 'astro-embed';
 import { Icon } from 'astro-icon/components';
 
 export async function getStaticPaths() {
-  const newsResponse = await client.queries.newsConnection();
-  console.log(newsResponse);
-  const paths = newsResponse.data.newsConnection.edges?.map(edge => {
+  const allNews = [];
+  let hasNextPage = true;
+  let cursor = null;
+
+  while (hasNextPage) {
+    const newsResponse = await client.queries.newsConnection({
+      first: 100, // Fetch 100 items at a time
+      after: cursor,
+    });
+
+    const edges = newsResponse.data.newsConnection?.edges || [];
+    allNews.push(...edges);
+
+    hasNextPage = newsResponse.data.newsConnection?.pageInfo?.hasNextPage;
+    cursor = newsResponse.data.newsConnection?.pageInfo?.endCursor;
+  }
+
+  console.log(`Total news items fetched: ${allNews.length}`);
+
+  const paths = allNews.map(edge => {
     const slug = edge?.node?.slug || edge?.node?._sys.filename;
-    console.log(slug);
     console.log(`Generated path for slug: ${slug}`);
     return {
       params: { slug },
       props: { news: edge?.node },
     };
-  }) ?? [];
+  });
 
   console.log(`Total paths generated: ${paths.length}`);
   return paths;
