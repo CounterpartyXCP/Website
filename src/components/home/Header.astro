@@ -5,31 +5,31 @@ import BlockCountdown from "../BlockCountdown";
 const headerResponse = await client.queries.header({ relativePath: "header.md" });
 const header = headerResponse.data.header;
 
-// Function to add line breaks
+// Function to add line breaks and apply small-caps to uppercase letters
 function addLineBreaks(text: string, wordsPerLine = 4) {
   const words = text.split(' ');
   const lines = [];
   for (let i = 0; i < words.length; i += wordsPerLine) {
     lines.push(words.slice(i, i + wordsPerLine).join(' '));
   }
-  return lines.join(' ');
+  return lines.join(' ').replace(/\b([A-Z]+)\b/g, '<span class="small-caps">$1</span>');
 }
 ---
 
-<header class="py-5 mt-16 bg-no-repeat bg-right-top bg-contain h-[550px]" style="background-image: url('/images/header_bg.png');">
+<header class="py-5 mt-16 bg-no-repeat bg-contain h-auto sm:h-[550px]! sm:bg-[size:contain] sm:bg-[position:right_top] bg-[size:auto] bg-[position:-884px_top]" style="background-image: url('/images/header_bg.png');">
   <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-    <div class="flex flex-col lg:flex-row items-center h-full">
-      <div class="lg:w-7/12">
-        <h1 class="text-blue-900 font-readex-pro text-3xl sm:text-4xl md:text-5xl font-normal leading-tight tracking-tighter mb-4 max-w-xl" set:html={addLineBreaks(header.title).replace(/DeFi/g, '<span class="small-caps">DeFi</span>').replace(/NFT/g, '<span class="small-caps">NFT</span>')} />
+    <div class="flex flex-col sm:flex-row items-center h-full">
+      <div class="w-full sm:w-7/12 order-2 sm:order-1 mt-4 sm:mt-0">
+        <h1 class="text-blue-900 font-readex-pro text-3xl sm:text-4xl md:text-5xl font-normal leading-tight tracking-tighter mb-4 max-w-xl" set:html={addLineBreaks(header.title)} />
         <div class="flex flex-wrap gap-2 mb-4">
           {header.ctaButtons?.map((button) => (
             <a href={button?.link} class="btn-custom">{button?.label}</a>
           ))}
         </div>
       </div>
-      <!-- <div class="lg:w-5/12">
-        <BlockCountdown client:load />
-      </div> -->
+      <div class="w-full sm:hidden order-1 sm:order-2 mb-4 sm:mb-0">
+        <div class="h-[32rem] sm:hidden"></div>
+      </div>
     </div>
   </div>
 </header>
@@ -50,5 +50,15 @@ function addLineBreaks(text: string, wordsPerLine = 4) {
 
   .small-caps {
     font-variant: small-caps;
+    text-transform: lowercase;
   }
+
+  @media (min-width: 640px) {
+    header {
+      background-position: right top;
+      background-size: contain;
+      height: 550px !important;
+    }
+  }
+
 </style>

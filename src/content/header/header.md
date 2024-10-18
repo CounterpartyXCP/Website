@@ -1,5 +1,5 @@
 ---
-title: The original defi and nft protocol on Bitcoin
+title: The original DeFi and NFT protocol on Bitcoin
 description: >-
   Create, trade, and innovate with smart contracts and digital assets on the
   Bitcoin blockchain.
