@@ -8,9 +8,10 @@ description: >-
 link: 'https://wallet.unspendablelabs.com/'
 logo: /images/wallets/horizon.svg
 features:
-  dispensers: false
+  dispensers: true
   assetCreation: true
   dex: false
+  fairminter: true
 platforms:
   web: true
   mobile: false

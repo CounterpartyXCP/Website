@@ -11,9 +11,10 @@ features:
   dispensers: true
   assetCreation: true
   dex: true
+  fairminter: true
 platforms:
   web: false
-  mobile: true
+  mobile: false
   desktop: true
 twitter: 'https://x.com/FreeWallet'
 telegram: 'https://t.me/freewallet_io'

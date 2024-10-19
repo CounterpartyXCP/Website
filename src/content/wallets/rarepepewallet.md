@@ -12,6 +12,7 @@ features:
   dispensers: false
   assetCreation: true
   dex: true
+  fairminter: false
 platforms:
   web: true
   mobile: false

@@ -50,6 +50,11 @@ export const walletCollection: Collection = {
           name: "dex",
           label: "DEX",
         },
+        {
+          type: "boolean",
+          name: "fairminter",
+          label: "Fairminter",
+        }
       ],
     },
     {

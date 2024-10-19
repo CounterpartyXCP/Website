@@ -21,7 +21,7 @@ communityLinks:
     url: https://t.me/Counterparty_XCP
     icon: "telegram"
   - title: Discord
-    url: https://discord.gg/counterparty
+    url: https://discord.gg/BpEZus4Dvw
     icon: "discord"
 ---
 
