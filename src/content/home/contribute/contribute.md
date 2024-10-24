@@ -7,9 +7,6 @@ developmentLinks:
   - title: GitHub
     url: https://github.com/CounterpartyXCP
     icon: "github"
-  - title: Dev Channel
-    url: https://t.me/Counterparty_Dev
-    icon: "telegram"
   - title: Forum
     url: https://github.com/CounterpartyXCP/Forum/discussions
     icon: "comments"
@@ -18,11 +15,8 @@ communityLinks:
     url: https://twitter.com/CounterpartyXCP
     icon: "x-twitter"
   - title: Community Channel
-    url: https://t.me/Counterparty_XCP
+    url: https://t.me/+hgJVFwSbZUkxYjgx
     icon: "telegram"
-  - title: Discord
-    url: https://discord.gg/BpEZus4Dvw
-    icon: "discord"
 ---
 
 # Note on Icons
