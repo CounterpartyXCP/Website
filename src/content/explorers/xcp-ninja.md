@@ -6,4 +6,5 @@ description: >-
 link: 'https://xcp.ninja'
 logo: xcpninja.png
 type: themed
+notUpgraded: true
 ---

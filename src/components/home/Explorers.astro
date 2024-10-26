@@ -35,7 +35,7 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {generalPurposeExplorers.map((explorer) => (
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+        <div class={`rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col relative ${explorer?.isForking ? 'bg-gray-100' : 'bg-white'}`}>
           <div class="p-6 flex-grow">
             <div class="flex items-center mb-4">
               <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="w-10 h-10 object-contain mr-3" />
@@ -44,9 +44,43 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
             <p class="text-sm text-blue-900 mb-4">{explorer?.description}</p>
           </div>
           <div class="px-6 pb-6">
-            <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
-              Check it out
-            </a>
+            {!explorer?.isForking && !explorer?.notUpgraded && (
+              <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+                Check it out
+              </a>
+            )}
+            {explorer?.isForking && (
+              <div class="flex items-start mb-4">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="2em" 
+                  height="2em" 
+                  viewBox="0 0 24 24"
+                  class="text-red-700 bg-red-300 rounded-full p-1 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path fill="currentColor" d="M9 21V6.825L7.4 8.4L6 7l4-4l4 4l-1.4 1.425l-1.6-1.6v6.525q.875-.775 1.975-1.112t2.2-.338q.275 0 .525.025t.475.075L14.6 10.4L16 9l4 4l-4 4l-1.4-1.4l1.575-1.6q-.275-.05-.55-.088t-.55-.037q-1.35 0-2.488.763T11 17v4z"></path>
+                </svg>
+                <p class="text-sm text-red-700 font-semibold">
+                  This provider supports a fork of Counterparty. Using this service could lead to loss of funds.
+                </p>
+              </div>
+            )}
+            {explorer?.notUpgraded && (
+              <div class="flex items-start mb-4">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="2em" 
+                  height="2em" 
+                  viewBox="0 0 24 24"
+                  class="text-orange-700 bg-orange-300 rounded-full p-1 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path fill="currentColor" d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path>
+                </svg>
+                <p class="text-sm text-orange-700 font-semibold">
+                  This provider has not yet upgraded to the latest version of the Counterparty protocol. Using this service might result in loss of funds.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       ))}
@@ -60,7 +94,7 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {themedExplorers.map((explorer) => (
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+        <div class={`rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col relative ${explorer?.isForking ? 'bg-gray-100' : 'bg-white'}`}>
           <div class="p-6 flex-grow">
             <div class="flex items-center mb-4">
               <img src={`/images/explorers/${explorer?.logo}`} alt={`${explorer?.title} logo`} class="w-10 h-10 object-contain mr-3" />
@@ -69,9 +103,43 @@ const themedExplorers = explorerList.filter(explorer => explorer.type === "theme
             <p class="text-sm text-blue-900 mb-4">{explorer?.description}</p>
           </div>
           <div class="px-6 pb-6">
-            <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
-              Check it out
-            </a>
+            {!explorer?.isForking && !explorer?.notUpgraded && (
+              <a href={explorer?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
+                Check it out
+              </a>
+            )}
+            {explorer?.isForking && (
+              <div class="flex items-start mb-4">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="2em" 
+                  height="2em" 
+                  viewBox="0 0 24 24"
+                  class="text-red-700 bg-red-300 rounded-full p-1 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path fill="currentColor" d="M9 21V6.825L7.4 8.4L6 7l4-4l4 4l-1.4 1.425l-1.6-1.6v6.525q.875-.775 1.975-1.112t2.2-.338q.275 0 .525.025t.475.075L14.6 10.4L16 9l4 4l-4 4l-1.4-1.4l1.575-1.6q-.275-.05-.55-.088t-.55-.037q-1.35 0-2.488.763T11 17v4z"></path>
+                </svg>
+                <p class="text-sm text-red-700 font-semibold">
+                  This provider is actively promoting a fork of the Counterparty protocol. Use of this service may lead to loss of funds!
+                </p>
+              </div>
+            )}
+            {explorer?.notUpgraded && (
+              <div class="flex items-start mb-4">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="2em" 
+                  height="2em" 
+                  viewBox="0 0 24 24"
+                  class="text-orange-700 bg-orange-300 rounded-full p-1 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path fill="currentColor" d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"></path>
+                </svg>
+                <p class="text-sm text-orange-700 font-semibold">
+                  This provider has not yet upgraded to the latest version of the Counterparty protocol. Using this service might result in loss of funds.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       ))}

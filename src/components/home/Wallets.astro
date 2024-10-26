@@ -51,14 +51,12 @@ const socialIcons = {
   
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {walletList.map((wallet) => (
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col">
+        <div class={`rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1 flex flex-col relative ${wallet?.isForking ? 'bg-gray-100' : 'bg-white'}`}>
           <div class="p-6 flex-grow">
-            <div class="flex items-center justify-between mb-4">
-              <div class="flex items-center">
-                <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="w-10 h-10 object-contain mr-3" />
-                <h3 class="text-xl font-normal text-blue-900">{wallet?.title}</h3>
-              </div>
-              <div class="flex items-center hidden">
+            <div class="flex items-center mb-4">
+              <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="w-10 h-10 object-contain mr-3" />
+              <h3 class="text-xl font-normal text-blue-900">{wallet?.title}</h3>
+              <div class="hidden ml-auto flex items-center">
                 {!wallet?.isV104Compatible && (
                   <Icon name="fa6-solid:triangle-exclamation" class="text-yellow-500 mr-1 w-4 h-4" />
                 )}
@@ -78,7 +76,13 @@ const socialIcons = {
               <h6 class="text-sm font-semibold text-blue-900 mb-2">Advanced Features:</h6>
               <div class="flex flex-wrap gap-2">
                 {Object.entries(wallet?.features || {}).filter(([key]) => key !== '__typename').map(([feature, enabled]) => (
-                  <span class={`text-xs px-2 py-1 rounded-full ${enabled ? 'bg-red-100 text-counterparty-red' : 'bg-gray-100 text-gray-500'}`}>
+                  <span class={`text-xs px-2 py-1 rounded-full ${
+                    wallet?.isForking
+                      ? 'bg-gray-200 text-gray-500'
+                      : enabled
+                        ? 'bg-red-100 text-counterparty-red'
+                        : 'bg-gray-100 text-gray-500'
+                  }`}>
                     <Icon name={`fa6-solid:${featureIcons[feature as keyof typeof featureIcons]}`} class="w-3 h-3 inline-block mr-1" />
                     {feature}
                   </span>
@@ -87,9 +91,32 @@ const socialIcons = {
             </div>
           </div>
           <div class="px-6 pb-6 mt-auto">
-            <a href={wallet?.link} class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" target="_blank" rel="noopener noreferrer">
-              Get {wallet?.title}
-            </a>
+            {!wallet?.isForking && (
+              <a 
+                href={wallet?.link} 
+                class="block w-full bg-counterparty-red hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded transition duration-300" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Get {wallet?.title}
+              </a>
+            )}
+            {wallet?.isForking && (
+              <div class="flex items-start mb-4">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="2em" 
+                  height="2em" 
+                  viewBox="0 0 24 24"
+                  class="text-red-700 bg-red-300 rounded-full p-1 mr-2 flex-shrink-0 mt-1"
+                >
+                  <path fill="currentColor" d="M9 21V6.825L7.4 8.4L6 7l4-4l4 4l-1.4 1.425l-1.6-1.6v6.525q.875-.775 1.975-1.112t2.2-.338q.275 0 .525.025t.475.075L14.6 10.4L16 9l4 4l-4 4l-1.4-1.4l1.575-1.6q-.275-.05-.55-.088t-.55-.037q-1.35 0-2.488.763T11 17v4z"></path>
+                </svg>
+                <p class="text-sm text-red-700 font-semibold">
+                  This provider supports a fork of Counterparty. Using this service could lead to loss of funds..
+                </p>
+              </div>
+            )}
             <div class="flex justify-between items-center mt-4">
               <div class="flex space-x-2">
                 {wallet?.twitter && (
@@ -134,6 +161,11 @@ const socialIcons = {
     mask-image: linear-gradient(to bottom, transparent, black);
     -webkit-mask-image: linear-gradient(to bottom, transparent, black);
     z-index: 0;
+  }
+
+  :global(.custom-tooltip-red) {
+    --bs-tooltip-bg: #7f1d1d !important; /* red-900 */
+    --bs-tooltip-color: #ffffff !important;
   }
 </style>
 

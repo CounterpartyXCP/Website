@@ -36,6 +36,16 @@ export const explorerCollection: Collection = {
       label: "Explorer Type",
       options: ["general", "themed"],
     },
+    {
+      type: "boolean",
+      name: "isForking",
+      label: "Is Forking",
+    },
+    {
+      type: "boolean",
+      name: "notUpgraded",
+      label: "Not Upgraded to Latest Version",
+    },
   ],
 }
 

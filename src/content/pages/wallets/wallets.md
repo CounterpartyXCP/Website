@@ -8,5 +8,6 @@ info: >
 walletList:
   - horizon-wallet.md
   - rarepepewallet.md
+  - freewallet.md
 ---
 

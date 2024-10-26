@@ -12,5 +12,6 @@ explorerList:
   - xcp-io.md
   - pepe-wtf.md
   - xcpdex.md
+  - tokenscan.md
   - xcp-ninja.md
 ---

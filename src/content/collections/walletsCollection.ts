@@ -94,6 +94,11 @@ export const walletCollection: Collection = {
       name: "telegram",
       label: "Telegram Link",
     },
+    {
+      type: "boolean",
+      name: "isForking",
+      label: "Is Forking",
+    },
   ],
 }
 
