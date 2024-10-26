@@ -9,7 +9,6 @@ themedIntro: >
 explorerList:
   - horizon-explorer.md
   - memepool.md
-  - tokenscan.md
   - xcp-io.md
   - pepe-wtf.md
   - xcpdex.md

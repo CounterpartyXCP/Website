@@ -6,7 +6,6 @@ info: >
   that allows it to support the Counterparty protocol. There are several
   different wallets, each with a different design and target audience.
 walletList:
-  - freewallet.md
   - horizon-wallet.md
   - rarepepewallet.md
 ---
