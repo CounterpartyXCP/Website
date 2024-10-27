@@ -26,5 +26,14 @@ marketplaceList:
       and collectibles.
     link: 'https://scarce.city'
     logo: /images/marketplaces/telegram-cloud-photo-size-4-5786088806716387708-x.jpg
+  - name: Firemints.xyz
+    description: >-
+      Firemints.xyz facilitates the trading of Counterparty assets through atomic swaps,
+      a technology that allows decentralized and risk-free transactions without third-party
+      involvement. The platform supports a wide range of assets, including XCP tokens,
+      SOG cards, RarePepes, Firemints and Stamps, offering a and secure option for users.
+    link: 'https://firemints.xyz'
+    logo: /images/marketplace/fire.svg
+
 ---
 
