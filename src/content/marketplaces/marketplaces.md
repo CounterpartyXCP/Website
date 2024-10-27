@@ -31,9 +31,9 @@ marketplaceList:
       Firemints.xyz facilitates the trading of Counterparty assets through atomic swaps,
       a technology that allows decentralized and risk-free transactions without third-party
       involvement. The platform supports a wide range of assets, including XCP tokens,
-      SOG cards, RarePepes, Firemints and Stamps, offering a and secure option for users.
+      SOG cards, RarePepes, Fairmints and Stamps, offering a and secure option for users.
     link: 'https://firemints.xyz'
-    logo: /images/marketplace/fire.svg
+    logo: /images/marketplaces/firemints.svg
 
 ---
 
