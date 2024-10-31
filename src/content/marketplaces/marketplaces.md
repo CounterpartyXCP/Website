@@ -34,6 +34,11 @@ marketplaceList:
       SOG cards, RarePepes, Fairmints and Stamps, offering a and secure option for users.
     link: 'https://firemints.xyz'
     logo: /images/marketplaces/firemints.svg
+  - name: OpenStamp
+    description: >-
+      OpenStamp is a leading platform in the Bitcoin STAMPS ecosystem, offering comprehensive services including minting, trading, exploration, and leap functionality for stamps assets. It has expanded        its offerings to fully support Counterparty asset trading, providing users with a simple, efficient, and secure trading experience.
+    link: 'https://openstamp.io'
+    logo: /images/marketplaces/openstamp.svg
 
 ---
 
