@@ -10,7 +10,7 @@ logo: /images/wallets/horizon.svg
 features:
   dispensers: true
   assetCreation: true
-  dex: false
+  dex: true
   fairminter: true
 platforms:
   web: true
