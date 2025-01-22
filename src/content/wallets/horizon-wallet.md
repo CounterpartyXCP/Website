@@ -1,5 +1,5 @@
 ---
-title: HorizonWallet
+title: Horizon Wallet
 description: >-
   Horizon Wallet is a BIP 84 wallet that uses BIP 39 seeds. Horizon is made
   by Unspendable Labs, a startup founded by the creators of Counterparty.
