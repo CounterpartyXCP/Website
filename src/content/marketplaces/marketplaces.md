@@ -14,7 +14,7 @@ marketplaceList:
     logo: /images/marketplaces/firemints.svg
   - name: OpenStamp
     description: >-
-      OpenStamp is a leading platform in the Bitcoin STAMPS ecosystem, offering comprehensive services including minting, trading, exploration, and leap functionality for stamps assets. It has expanded        its offerings to fully support Counterparty asset trading, providing users with a simple, efficient, and secure trading experience.
+      OpenStamp is a leading platform in the Bitcoin STAMPS ecosystem, offering comprehensive services including minting, trading, exploration, and leap functionality for stamps assets. It has expanded its offerings to fully support Counterparty asset trading, providing users with a simple, efficient, and secure trading experience.
     link: "https://openstamp.io"
     logo: /images/marketplaces/openstamp.svg
   - name: ORBital
@@ -37,4 +37,12 @@ marketplaceList:
       and collectibles.
     link: "https://scarce.city"
     logo: /images/marketplaces/telegram-cloud-photo-size-4-5786088806716387708-x.jpg
+  - name: Horizon Market
+    description: >-
+      Horizon Market allows users to trade any Counterparty asset for BTC
+      trustlessly and peer-to-peer using atomic swaps. Horizon Market works
+      with the Horizon Wallet, Xverse, OKX, Leather, and Unisat Chrome
+      extensions.
+    link: "https://horizon.market"
+    logo: /images/wallets/horizon.svg
 ---
