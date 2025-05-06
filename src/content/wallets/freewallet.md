@@ -1,7 +1,7 @@
 ---
 title: Freewallet
 description: >-
-  Freewallet was a Counterparty desktop wallet, and one of the most popular in the ecosystem.
+  Freewallet is a Counterparty desktop wallet
 link: 'https://freewallet.io/'
 logo: /images/wallets/freewallet.png
 features:
@@ -16,5 +16,5 @@ platforms:
 twitter: 'https://x.com/FreeWallet'
 telegram: 'https://t.me/freewallet_io'
 isV104Compatible: false
-isForking: true
+isForking: false
 ---
