@@ -1,7 +1,7 @@
 ---
 title: Freewallet
 description: >-
-  Freewallet is a Counterparty desktop wallet
+  Freewallet is a Counterparty desktop wallet.
 link: 'https://freewallet.io/'
 logo: /images/wallets/freewallet.png
 features:
