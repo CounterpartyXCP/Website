@@ -45,4 +45,6 @@ marketplaceList:
       extensions.
     link: "https://horizon.market"
     logo: /images/wallets/horizon.svg
+telegram: 'https://t.me/HorizonXCP'
+twitter: "https://x.com/hznmarket"
 ---
