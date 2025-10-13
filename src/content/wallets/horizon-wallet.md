@@ -1,11 +1,13 @@
 ---
 title: Horizon Wallet
 description: >-
-  Horizon Wallet is a BIP 84 wallet that uses BIP 39 seeds. Horizon is made
-  by Unspendable Labs, a startup founded by the creators of Counterparty.
-  Horizon supports sending, receiving and issuing assets. Counterwallet and
-  Freewallet seeds are also supported.
-link: 'https://wallet.unspendablelabs.com/'
+  Horizon Wallet is a sleek, modern wallet for the Counterparty Bitcoin 
+  metaprotocol, recently rebuilt from the ground up. Horizon Wallet v2.0 
+  introduces a completely refreshed visual design, smart asset swaps with 
+  support for DEX trades and PSBT atomic swaps, and deep integration with 
+  Horizon Market.
+
+link: 'https://chromewebstore.google.com/detail/horizon-wallet/bnmgkjlaommgappfckljlelgahnbngme'
 logo: /images/wallets/horizon.svg
 features:
   dispensers: true
