@@ -17,6 +17,5 @@ platforms:
   web: true
   mobile: false
   desktop: false
-isV104Compatible: true
 twitter: 'https://x.com/wasthatawolf'
 ---

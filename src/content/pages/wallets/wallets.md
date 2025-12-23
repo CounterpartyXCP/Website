@@ -10,4 +10,5 @@ walletList:
   - horizon-wallet.md
   - rarepepewallet.md
   - freewallet.md
+  - counterwallet-v2.md
 ---

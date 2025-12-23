@@ -20,5 +20,4 @@ platforms:
   desktop: false
 telegram: 'https://t.me/HorizonXCP'
 twitter: "https://x.com/hznmarket"
-isV104Compatible: true
 ---

@@ -15,6 +15,5 @@ platforms:
   desktop: true
 twitter: 'https://x.com/FreeWallet'
 telegram: 'https://t.me/freewallet_io'
-isV104Compatible: false
 isForking: false
 ---

@@ -15,5 +15,4 @@ platforms:
   desktop: false
 telegram: "https://t.me/EverdreamSoft"
 twitter: "https://x.com/EverdreamSoft"
-isV104Compatible: true
 ---

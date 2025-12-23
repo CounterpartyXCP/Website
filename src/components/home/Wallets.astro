@@ -56,20 +56,6 @@ const socialIcons = {
             <div class="flex items-center mb-4">
               <img src={wallet?.logo} alt={`${wallet?.title} logo`} class="w-10 h-10 object-contain mr-3" />
               <h3 class="text-xl font-normal text-blue-900">{wallet?.title}</h3>
-              <div class="hidden ml-auto flex items-center">
-                {!wallet?.isV104Compatible && (
-                  <Icon name="fa6-solid:triangle-exclamation" class="text-yellow-500 mr-1 w-4 h-4" />
-                )}
-                <span 
-                  class={`inline-flex items-center text-xs font-bold ${wallet?.isV104Compatible ? 'text-green-500' : 'text-gray-400'}`}
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  title={wallet?.isV104Compatible ? "Compatible with latest protocol version" : "Not fully compatible with latest protocol version"}
-                >
-                  <span class={`w-2 h-2 rounded-full mr-1 ${wallet?.isV104Compatible ? 'bg-green-500' : 'bg-gray-400'}`}></span>
-                  v10.4
-                </span>
-              </div>
             </div>
             <p class="text-sm text-blue-900 mb-4">{wallet?.description}</p>
             <div class="mb-4">

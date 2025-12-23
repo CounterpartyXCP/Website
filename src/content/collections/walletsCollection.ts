@@ -80,11 +80,6 @@ export const walletCollection: Collection = {
       ],
     },
     {
-      type: "boolean",
-      name: "isV104Compatible",
-      label: "Is v10.4 Compatible",
-    },
-    {
       type: "string",
       name: "twitter",
       label: "Twitter Link",
