@@ -9,14 +9,13 @@ features:
   assetCreation: true
   dex: true
   fairminter: true
-# New advanced features (per issue #7):
-broadcasts: true
-dividends: true
-sweeps: true
-atomicSwaps: false
-counterpartyInscriptions: false
-hardwareWalletSupport: true
-openSource: true
+  broadcasts: true
+  dividends: true
+  sweeps: true
+  atomicSwaps: false
+  counterpartyInscriptions: false
+  hardwareWalletSupport: true
+  openSource: true
 platforms:
   web: false
   mobile: false
