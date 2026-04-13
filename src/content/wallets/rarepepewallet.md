@@ -7,7 +7,7 @@ description: >-
   includes buying/selling from the dex, sends, asset transfers, address
   sweeps and message signing.
 link: 'https://rarepepewallet.wtf/'
-logo: /images/wallets/rarepepewallet.png
+logo: /images/wallets/rpw.png
 features:
   dispensers: false
   assetCreation: true
