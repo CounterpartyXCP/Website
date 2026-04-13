@@ -7,7 +7,7 @@ description: >-
   support for DEX trades and PSBT atomic swaps, and deep integration with 
   Horizon Market.
 link: 'https://chromewebstore.google.com/detail/horizon-wallet/bnmgkjlaommgappfckljlelgahnbngme'
-logo: /images/wallets/horizon-wallet.png
+logo: /images/wallets/horizon.svg
 features:
   dispensers: true
   assetCreation: true
