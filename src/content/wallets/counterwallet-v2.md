@@ -11,8 +11,8 @@ features:
   assetCreation: true
   dex: true
   fairminter: true
-  broadcasts: true
-  dividends: true
+  broadcasts: false
+  dividends: false
   sweeps: false
   atomicSwaps: false
   counterpartyInscriptions: false
