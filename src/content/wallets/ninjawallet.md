@@ -2,7 +2,7 @@
 title: NinjaWallet
 description: >-
   NinjaWallet is a STAMPS centric Counterparty wallet that includes compatibility with Leather Wallet and Unisat. It also support protocol functions like Dispensers, Asset Creation, Dividends, Atomic Swaps and even SRC20 token trading.
-link: 'https://ninjawallet.com/'   # ← update with the correct real URL
+link: 'https://wallet.xcp.ninja/'
 logo: /images/wallets/ninjawallet.png
 features:
   dispensers: true
