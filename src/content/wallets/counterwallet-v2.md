@@ -5,7 +5,7 @@ description: >-
   asset creation, dispensers, DEX trading, fairminter, and connects with external
   wallet providers like Unisat, OKX, Leather, and FreeWallet.
 link: 'https://derpherpenstein.github.io/CounterWalletV2/'
-logo: /images/wallets/counterwallet-v2.png
+logo: /images/wallets/counterwallet-v2.svg
 features:
   dispensers: true
   assetCreation: true
