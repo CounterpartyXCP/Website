@@ -54,7 +54,42 @@ export const walletCollection: Collection = {
           type: "boolean",
           name: "fairminter",
           label: "Fairminter",
-        }
+        },
+        {
+          type: "boolean",
+          name: "broadcasts",
+          label: "Broadcasts",
+        },
+        {
+          type: "boolean",
+          name: "dividends",
+          label: "Dividends",
+        },
+        {
+          type: "boolean",
+          name: "sweeps",
+          label: "Sweeps",
+        },
+        {
+          type: "boolean",
+          name: "atomicSwaps",
+          label: "Atomic Swaps",
+        },
+        {
+          type: "boolean",
+          name: "counterpartyInscriptions",
+          label: "Counterparty Inscriptions",
+        },
+        {
+          type: "boolean",
+          name: "hardwareWalletSupport",
+          label: "Hardware Wallet Support",
+        },
+        {
+          type: "boolean",
+          name: "openSource",
+          label: "Open Source",
+        },
       ],
     },
     {
