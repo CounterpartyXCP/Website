@@ -45,6 +45,13 @@ marketplaceList:
       extensions.
     link: "https://horizon.market"
     logo: /images/wallets/horizon.svg
-telegram: 'https://t.me/HorizonXCP'
-twitter: "https://x.com/hznmarket"
+  - name: Emblem Vault
+    description: >-
+      Emblem Vault is a tool for trading 'vaulted' Counterparty assets on the Ethereum blockchain.
+      The platform allows users to securely store, manage, and trade Counterparty assets
+      to sell/trade on marketplaces like OpenSea, Blur, X2Y2 (and more). Users retain full control
+      of their assets within the vault until they are sold. Emblem Vault also offers users the ability
+      to delist or unvault their asset(s) to be moved back to Counterparty centric wallets at any time.
+    link: "https://emblem.vision/"
+    logo: /images/marketplaces/emblem.jpg
 ---
