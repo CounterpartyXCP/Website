@@ -11,6 +11,13 @@ features:
   assetCreation: true
   dex: true
   fairminter: true
+  broadcasts: false
+  dividends: false
+  sweeps: false
+  atomicSwaps: false
+  counterpartyInscriptions: false
+  hardwareWalletSupport: false
+  openSource: true
 platforms:
   web: true
   mobile: false

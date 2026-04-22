@@ -1,5 +1,5 @@
 ---
-title: RarepepeWallet
+title: Rare Pepe Wallet
 description: >-
   Rare Pepe Wallet supports Rare Pepes and the entire Counterparty NFT
   ecosystem. Created in 2016, the current version supports both legacy
@@ -13,9 +13,16 @@ features:
   assetCreation: true
   dex: true
   fairminter: false
+  broadcasts: false
+  dividends: false
+  sweeps: true
+  atomicSwaps: true
+  counterpartyInscriptions: false
+  hardwareWalletSupport: true
+  openSource: false
 platforms:
-  web: true
+  web: false
   mobile: false
-  desktop: false
+  desktop: true
 twitter: 'https://x.com/wasthatawolf'
 ---

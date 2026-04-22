@@ -6,7 +6,6 @@ description: >-
   introduces a completely refreshed visual design, smart asset swaps with 
   support for DEX trades and PSBT atomic swaps, and deep integration with 
   Horizon Market.
-
 link: 'https://chromewebstore.google.com/detail/horizon-wallet/bnmgkjlaommgappfckljlelgahnbngme'
 logo: /images/wallets/horizon.svg
 features:
@@ -14,10 +13,17 @@ features:
   assetCreation: true
   dex: true
   fairminter: true
+  broadcasts: false
+  dividends: true
+  sweeps: true
+  atomicSwaps: true
+  counterpartyInscriptions: false
+  hardwareWalletSupport: false
+  openSource: true
 platforms:
-  web: true
+  web: false
   mobile: false
-  desktop: false
+  desktop: true
 telegram: 'https://t.me/HorizonXCP'
 twitter: "https://x.com/hznmarket"
 ---

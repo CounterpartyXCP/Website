@@ -6,6 +6,8 @@ info: >
   that allows it to support the Counterparty protocol. There are several
   different wallets, each with a different design and target audience.
 walletList:
+  - xcpwallet.md
+  - ninjawallet.md
   - casa-tookan.md
   - horizon-wallet.md
   - rarepepewallet.md

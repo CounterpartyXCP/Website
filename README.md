@@ -140,17 +140,44 @@ After making your changes:
 
 By following this process, you help maintain the quality and consistency of the website's content while allowing for community contributions.
 
-## 🤝 Contributing
+## Content Architecture
 
-We welcome contributions to the Counterparty website! Here's how you can contribute:
+Content lives in `src/content/` as Markdown with YAML frontmatter. Each content type has:
+1. Markdown files in `src/content/<type>/<slug>.md`
+2. Tina collection schema in `src/content/collections/<type>Collection.ts`
+3. Astro rendering component in `src/components/home/<Type>.astro`
+4. Page list in `src/content/pages/<type>/<type>.md` (controls which items appear and in what order)
+
+All four must stay in sync. Adding a frontmatter field to a Markdown file without updating the Tina schema means the field will be silently stripped at render time.
+
+### Adding or Updating Content
+
+1. Create/edit the Markdown file in `src/content/<type>/<slug>.md` with frontmatter matching the corresponding collection schema
+2. Add the filename to the list in `src/content/pages/<type>/<type>.md`
+3. If adding new frontmatter fields: update the Tina schema in the collection file AND any icon/display mappings in the Astro component
+4. Add any images to `public/images/<type>/`
+
+## Build Notes
+
+The `npm run build` script requires `tinacms dev` to be running. Start it in the background first:
+
+```
+TINA_PUBLIC_IS_LOCAL=true npx tinacms dev &
+sleep 5
+npx astro build
+```
+
+There is no test suite — the build itself validates content. If `astro build` succeeds, the content is valid.
+
+## Contributing
+
+We welcome contributions to the Counterparty website:
 
 1. Fork the repository
 2. Create a new branch: `git checkout -b feature/your-feature-name`
 3. Make your changes and commit them: `git commit -m 'Add some feature'`
 4. Push to the branch: `git push origin feature/your-feature-name`
 5. Submit a pull request
-
-Please make sure to update tests as appropriate and adhere to the project's coding standards.
 
 ## 📄 License
 
