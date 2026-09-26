@@ -54,4 +54,17 @@ marketplaceList:
       to delist or unvault their asset(s) to be moved back to Counterparty centric wallets at any time.
     link: "https://emblem.vision/"
     logo: /images/marketplaces/emblem.jpg
+  - name: RareBtcAssets
+    description: >-
+      RareBtcAssets is a non-custodial marketplace for Counterparty assets, Ordinals, and Stamps in one place.
+      Users can buy, sell, auction, and swap assets peer-to-peer without giving up custody, with settlements staying in the user’s own Bitcoin wallet.
+    link: "https://rare-btc-assets.com/"
+    logo: /images/marketplaces/rarebtcassets.png
+  - name: XCP.FUN
+    description: >-
+      XCP.FUN is a Counterparty token launchpad using the XCP-69 standard for liquidity and minting specifications.
+      If a token does not meet the launchpad goal, all XCP users put towards minting gets refunded. If a token has enough mints to bond, the liquidity pool starts at 2.2x the minting price.
+      XCP.FUN also offers buying and selling of XCP with ease and even supports adding or removing liquidity from Counterparty pools.
+    link: "https://xcp.fun/"
+    logo: /images/marketplaces/xcpfun.png
 ---
