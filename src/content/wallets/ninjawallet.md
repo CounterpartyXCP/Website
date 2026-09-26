@@ -8,7 +8,7 @@ features:
   dispensers: true
   assetCreation: true
   dex: false
-  fairminter: true
+  fairminter: false
   broadcasts: false
   dividends: true
   sweeps: false
