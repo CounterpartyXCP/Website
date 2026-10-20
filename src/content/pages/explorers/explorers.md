@@ -15,4 +15,5 @@ explorerList:
   - tokenscan.md
   - xcp-ninja.md
   - countertools.md
+  - written-in-bitcoin.md
 ---
