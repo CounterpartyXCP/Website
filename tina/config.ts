@@ -4,6 +4,7 @@ import { whatIsCounterpartyCollection } from "../src/content/collections/home/wh
 import { newsCollection } from "../src/content/collections/newsCollection";
 import { walletCollection, walletsPageCollection } from "../src/content/collections/walletsCollection";
 import { explorerCollection, explorersPageCollection } from "../src/content/collections/explorersCollection";
+import { featuredCollectionsCollection } from "../src/content/collections/featuredCollectionsCollection";
 import { marketplacesCollection } from "../src/content/collections/marketplacesCollection";
 import { contributeCollection } from "../src/content/collections/contributeCollection";
 
@@ -29,6 +30,7 @@ export default defineConfig({
       walletsPageCollection,
       explorerCollection,
       explorersPageCollection,
+      featuredCollectionsCollection,
       marketplacesCollection,
       newsCollection,
     ],
