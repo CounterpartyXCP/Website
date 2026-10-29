@@ -15,4 +15,6 @@ explorerList:
   - tokenscan.md
   - xcp-ninja.md
   - countertools.md
+  - pepe-tools.md
+  - op-return-art.md
 ---
