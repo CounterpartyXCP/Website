@@ -12,7 +12,7 @@ features:
   dex: true
   fairminter: true
   broadcasts: false
-  dividends: false
+  dividends: true
   sweeps: false
   atomicSwaps: false
   counterpartyInscriptions: false
