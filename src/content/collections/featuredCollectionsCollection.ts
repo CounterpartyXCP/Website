@@ -29,6 +29,11 @@ export const featuredCollectionsCollection: Collection = {
         },
         {
           type: "string",
+          name: "year",
+          label: "Year",
+        },
+        {
+          type: "string",
           name: "description",
           label: "Description",
           ui: {
@@ -44,6 +49,29 @@ export const featuredCollectionsCollection: Collection = {
           type: "image",
           name: "logo",
           label: "Collection Logo",
+        },
+        {
+          type: "object",
+          name: "links",
+          label: "Additional Links",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              name: "label",
+              label: "Label",
+            },
+            {
+              type: "string",
+              name: "url",
+              label: "URL",
+            },
+          ],
+          ui: {
+            itemProps: (item) => ({
+              label: item?.label || "Link",
+            }),
+          },
         },
       ],
       ui: {
