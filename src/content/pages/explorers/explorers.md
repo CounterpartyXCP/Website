@@ -7,7 +7,6 @@ themedIntro: >
   These are explorers with a particular focus on one part of the larger
   Counterparty ecosystem.
 explorerList:
-  - horizon-explorer.md
   - memepool.md
   - xcp-io.md
   - pepe-wtf.md
