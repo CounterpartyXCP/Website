@@ -114,10 +114,10 @@ TINA_PUBLIC_IS_LOCAL=true npx tinacms dev &
 sleep 5
 npx astro build
 pkill -f "tinacms dev"
-rm -rf public/admin dist/admin
+rm -rf public/admin/index.html dist/admin
 ```
 
-There is no separate test suite — `npx astro build` validates the Tina schemas and content. Note that `tinacms dev` generates `public/admin/index.html` pointing to `localhost:4001`, so always remove `public/admin` and `dist/admin` before syncing `./dist` to production.
+There is no separate test suite — `npx astro build` validates the Tina schemas and content. Note that `tinacms dev` generates `public/admin/index.html` pointing to `localhost:4001`, so always remove `public/admin/index.html` and `dist/admin` before syncing `./dist` to production.
 
 ## 🚢 Deployment & Maintenance
 
@@ -138,7 +138,7 @@ TINA_PID=$!
 sleep 5
 npx astro build
 kill $TINA_PID
-rm -rf public/admin dist/admin
+rm -rf public/admin/index.html dist/admin
 
 gcloud storage rsync ./dist gs://counterparty-website-coral-falcon-658184 \
   --recursive \
