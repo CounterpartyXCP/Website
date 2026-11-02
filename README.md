@@ -122,7 +122,7 @@ There is no separate test suite — `npx astro build` validates the Tina schemas
 
 ### Production Hosting (`www.counterparty.io`)
 - **GCP Project**: `coral-falcon-658184` (`Counterparty`)
-- **Storage Bucket**: `gs://counterparty-website-coral-falcon-658184` (regional `us-east4`, public read, website `index.html` / `404.html`, object versioning enabled)
+- **Storage Bucket**: `gs://counterparty-website-coral-falcon-658184` (multi-region `US`, `roles/storage.legacyObjectReader` public object read, website `index.html` / `404.html`, object versioning enabled)
 - **Frontend Load Balancer**: Global external Application Load Balancer (`35.186.209.185`) backed by Cloud CDN (`counterparty-website` backend bucket) and Google-managed Certificate Manager TLS (`counterparty-website`)
   - Redirects `http://` -> `https://` and `https://counterparty.io` -> `https://www.counterparty.io` (`301`)
   - Routes `https://www.counterparty.io/protocol_changes.json` via Internet NEG (`counterparty-github-raw`) to `raw.githubusercontent.com/CounterpartyXCP/counterparty-core/refs/heads/master/counterparty-core/counterpartycore/protocol_changes.json`

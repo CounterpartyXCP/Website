@@ -26,14 +26,14 @@ const latestNews = newsResponse.data.newsConnection.edges?.map(edge => edge?.nod
             <h3 class="text-xl font-normal text-blue-900 mb-2">{news?.title}</h3>
             <p class="text-sm text-gray-600 mb-2">{news?.date ? new Date(news.date).toLocaleDateString() : ''}</p>
             <p class="text-sm text-blue-900 mb-4 flex-grow">{news?.excerpt}</p>
-            <a href={`/news/${news?.slug}`} class="text-counterparty-red hover:text-red-600 font-medium transition duration-300 mt-auto">Read more</a>
+            <a href={`/news/${news?.slug}/`} class="text-counterparty-red hover:text-red-600 font-medium transition duration-300 mt-auto">Read more</a>
           </div>
         </div>
       ))}
     </div>
     
     <div class="text-center">
-      <a href="/news" class="bg-counterparty-red hover:bg-red-600 text-white font-bold py-2 px-6 rounded transition duration-300">
+      <a href="/news/" class="bg-counterparty-red hover:bg-red-600 text-white font-bold py-2 px-6 rounded transition duration-300">
         View all news
       </a>
     </div>
