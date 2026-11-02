@@ -120,31 +120,36 @@ There is no separate test suite — `npx astro build` validates the Tina schemas
 
 ## 🚢 Deployment & Maintenance
 
-### Production Server (`www.counterparty.io`)
-- **Host**: `www.counterparty.io` (`161.35.121.212`, DigitalOcean droplet `counterparty-website` in `nyc1`)
-- **OS & Kernel**: Ubuntu 24.10 (`oracular`, EOL) running mainline LTS kernel `6.12.115-0612115-generic`, hardened via `/etc/sysctl.d/99-cve-2026-98432.conf`, `/etc/sysctl.d/99-panic-reboot.conf`, and `nftables.service` (`/etc/nftables.conf`)
-- **Checkout Path**: `/var/www/Website`
-- **Web Root**: `/var/www/Website/dist` (served statically by Nginx)
-- **Nginx Config**: `/etc/nginx/sites-available/default`
-  - Redirects `http://` -> `https://` and `counterparty.io` -> `https://www.counterparty.io`
-  - Proxies `https://www.counterparty.io/protocol_changes.json` to `raw.githubusercontent.com/CounterpartyXCP/counterparty-core/refs/heads/master/counterparty-core/counterpartycore/protocol_changes.json` (with IPv4 resolver `ipv6=off`)
-  - TLS certificates are managed by Certbot (`/etc/letsencrypt/live/counterparty.io/`)
+### Production Hosting (`www.counterparty.io`)
+- **GCP Project**: `coral-falcon-658184` (`Counterparty`)
+- **Storage Bucket**: `gs://counterparty-website-coral-falcon-658184` (regional `us-east4`, public read, website `index.html` / `404.html`, object versioning enabled)
+- **Frontend Load Balancer**: Global external Application Load Balancer (`35.186.209.185`) backed by Cloud CDN (`counterparty-website` backend bucket) and Google-managed Certificate Manager TLS (`counterparty-website`)
+  - Redirects `http://` -> `https://` and `https://counterparty.io` -> `https://www.counterparty.io` (`301`)
+  - Routes `https://www.counterparty.io/protocol_changes.json` via Internet NEG (`counterparty-github-raw`) to `raw.githubusercontent.com/CounterpartyXCP/counterparty-core/refs/heads/master/counterparty-core/counterpartycore/protocol_changes.json`
+- **Terraform IaC**: Managed in `UnspendableLabs/Infrastructure` under `terraform/counterparty-platform/website-storage.tf` and `terraform/counterparty-platform/website-frontend.tf`
 
 ### Deploying Website Changes
-After merging changes to `master` on GitHub:
+After merging changes to `master` on GitHub, build the static site and sync `./dist` to the GCS bucket:
 
 ```bash
-ssh root@161.35.121.212
-export PATH="/root/.nvm/versions/node/v20.18.0/bin:$PATH"
-cd /var/www/Website
-git pull
 TINA_PUBLIC_IS_LOCAL=true npx tinacms dev &
+TINA_PID=$!
 sleep 5
 npx astro build
-pkill -f "tinacms dev"
-```
+kill $TINA_PID
 
-Since Nginx serves `/var/www/Website/dist` directly, changes take effect as soon as `npx astro build` completes (no Nginx reload required unless `/etc/nginx/sites-available/default` was modified).
+gcloud storage rsync ./dist gs://counterparty-website-coral-falcon-658184 \
+  --recursive \
+  --delete-unmatched-destination-objects \
+  --project=coral-falcon-658184 \
+  --account=adam@unspendablelabs.com
+
+gcloud compute url-maps invalidate-cdn-cache counterparty-website \
+  --path="/*" \
+  --project=coral-falcon-658184 \
+  --account=adam@unspendablelabs.com \
+  --async
+```
 
 ### Documentation (`docs.counterparty.io`)
 The documentation site at [docs.counterparty.io](https://docs.counterparty.io) is maintained in a separate repository ([`CounterpartyXCP/Documentation`](https://github.com/CounterpartyXCP/Documentation)) and hosted on GitHub Pages from its `gh-pages` branch. To publish documentation updates from a local clone of `Documentation`:
