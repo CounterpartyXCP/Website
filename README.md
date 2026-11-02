@@ -122,6 +122,7 @@ There is no separate test suite — `npx astro build` validates the Tina schemas
 
 ### Production Server (`www.counterparty.io`)
 - **Host**: `www.counterparty.io` (`161.35.121.212`, DigitalOcean droplet `counterparty-website` in `nyc1`)
+- **OS & Kernel**: Ubuntu 24.10 (`oracular`, EOL) running mainline LTS kernel `6.12.115-0612115-generic`, hardened via `/etc/sysctl.d/99-cve-2026-98432.conf`, `/etc/sysctl.d/99-panic-reboot.conf`, and `nftables.service` (`/etc/nftables.conf`)
 - **Checkout Path**: `/var/www/Website`
 - **Web Root**: `/var/www/Website/dist` (served statically by Nginx)
 - **Nginx Config**: `/etc/nginx/sites-available/default`
