@@ -114,18 +114,19 @@ TINA_PUBLIC_IS_LOCAL=true npx tinacms dev &
 sleep 5
 npx astro build
 pkill -f "tinacms dev"
+rm -rf public/admin dist/admin
 ```
 
-There is no separate test suite — `npx astro build` validates the Tina schemas and content.
+There is no separate test suite — `npx astro build` validates the Tina schemas and content. Note that `tinacms dev` generates `public/admin/index.html` pointing to `localhost:4001`, so always remove `public/admin` and `dist/admin` before syncing `./dist` to production.
 
 ## 🚢 Deployment & Maintenance
 
 ### Production Hosting (`www.counterparty.io`)
 - **GCP Project**: `coral-falcon-658184` (`Counterparty`)
-- **Storage Bucket**: `gs://counterparty-website-coral-falcon-658184` (multi-region `US`, `roles/storage.legacyObjectReader` public object read, website `index.html` / `404.html`, object versioning enabled)
+- **Storage Bucket**: `gs://counterparty-website-coral-falcon-658184` (multi-region `US`, `roles/storage.legacyObjectReader` public object read with XML directory listing disabled, website `index.html` / `404.html`, object versioning enabled)
 - **Frontend Load Balancer**: Global external Application Load Balancer (`35.186.209.185`) backed by Cloud CDN (`counterparty-website` backend bucket) and Google-managed Certificate Manager TLS (`counterparty-website`)
-  - Redirects `http://` -> `https://` and `https://counterparty.io` -> `https://www.counterparty.io` (`301`)
-  - Routes `https://www.counterparty.io/protocol_changes.json` via Internet NEG (`counterparty-github-raw`) to `raw.githubusercontent.com/CounterpartyXCP/counterparty-core/refs/heads/master/counterparty-core/counterpartycore/protocol_changes.json`
+  - Redirects `http://` -> `https://www.counterparty.io` (`301`) and `https://counterparty.io/*` -> `https://www.counterparty.io/*` (`301`)
+  - Serves `https://counterparty.io/protocol_changes.json` and `https://www.counterparty.io/protocol_changes.json` (`200 OK`) via Internet NEG (`counterparty-github-raw`) from `raw.githubusercontent.com/CounterpartyXCP/counterparty-core/refs/heads/master/counterparty-core/counterpartycore/protocol_changes.json`
 - **Terraform IaC**: Managed in `UnspendableLabs/Infrastructure` under `terraform/counterparty-platform/website-storage.tf` and `terraform/counterparty-platform/website-frontend.tf`
 
 ### Deploying Website Changes
@@ -137,6 +138,7 @@ TINA_PID=$!
 sleep 5
 npx astro build
 kill $TINA_PID
+rm -rf public/admin dist/admin
 
 gcloud storage rsync ./dist gs://counterparty-website-coral-falcon-658184 \
   --recursive \
